@@ -11,20 +11,18 @@ module.exports = (data, to) => {
   const orderDate = getFullDate();
 
   const transporter = nodemailer.createTransport({
-    host: `smtp-auth.mailprotect.be`,
-    port: 465,
-    secure: true,
+    service: `gmail`,
     auth: {
       user: user,
       pass: pass
     }
   });
-
+  
   const source = fs.readFileSync(path.join(__dirname, `templates/${data.mailtype}.hbs`), `utf8`);
   const template = Handlebars.compile(source);
 
   const mailOptions = {
-    from: `"Cherry Stickers 🍒" <no-reply@cherrystickers.be>`,
+    from: `"Buda Munt 💰" <no-reply@budamunt.be>`,
     to: to,
     subject: data.subject,
     html: template({data, orderDate})

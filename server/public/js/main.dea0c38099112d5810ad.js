@@ -15822,10 +15822,7 @@ var App = function App(_ref) {
           lineNumber: 20
         }
       },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_router_dom__["b" /* Route */], {
-        exact: true, path: '/',
-        component: __WEBPACK_IMPORTED_MODULE_5__Home__["a" /* default */],
-        __source: {
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_5__Home__["a" /* default */], __source: {
           fileName: _jsxFileName,
           lineNumber: 21
         }
@@ -15859,14 +15856,28 @@ var _jsxFileName = '/Users/user/Desktop/BUDA/src/js/containers/Home.jsx';
 
 var Home = function Home() {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-    'p',
+    'section',
     {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 4
       }
     },
-    'Home ... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, sit.'
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'p',
+      {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 5
+        }
+      },
+      'Home ... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, sit.'
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAklEQVR4AewaftIAAAKeSURBVO3BQY7cQAwEwUxC//9yeY88NSBIM/bSjDA/WGMUa5RijVKsUYo1SrFGKdYoxRqlWKMUa5RijVKsUYo1SrFGKdYoxRrl4iGVb0rCicoTSehUvikJTxRrlGKNUqxRLl6WhDep3JGETuUkCXck4U0qbyrWKMUapVijXHyYyh1JuEPlJAmdSqfSJeEOlTuS8EnFGqVYoxRrlIvhVLokdCqTFGuUYo1SrFEuhklCp/I/KdYoxRqlWKNcfFgSJkvCv6RYoxRrlGKNcvEylclU/mXFGqVYoxRrlIuHkjBZEn6TYo1SrFGKNcrFQypdEjqVNyWhS8JJEp5QeVMSPqlYoxRrlGKNcvFQEjqVO5LQqXRJeEKlS8KJSpeETuUkCZ3KNxVrlGKNUqxRLj4sCScqXRI6lS4JncpJEp5Q6ZLQqXQqXRI6lZMkPFGsUYo1SrFGuXhZEk5U7kjCSRI6lU6lS8JJEjqV36RYoxRrlGKNcvEylZMkdCqdykkSOpU7VO5IwhMq31SsUYo1SrFGMT/4xVS6JJyo3JGEO1TuSMKbijVKsUYp1igXD6l8UxK6JHQqf1MS7lDpkvBEsUYp1ijFGuXiZUl4k8qJykkSTlROVE6S0KnckYQ3FWuUYo1SrFEuPkzljiS8SeWOJJyodCpdEjqVLgmdSpeEJ4o1SrFGKdYoF8MkoVM5SUKn0iWhS0Kn0qnckYQ3FWuUYo1SrFEuhlHpktCpdConKnckoVP5pmKNUqxRijXKxYcl4ZOS8EQSTlS6JJyodEk4UemS8ESxRinWKMUa5eJlKt+k0iWhU7lDpUtCp/KmJLypWKMUa5RijWJ+sMYo1ijFGqVYoxRrlGKNUqxRijVKsUYp1ijFGqVYoxRrlGKNUqxRijXKHyvg7gWCju0yAAAAAElFTkSuQmCC', __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6
+      }
+    })
   );
 };
 
@@ -30422,4 +30433,4 @@ module.exports = __webpack_require__(99);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.5345d1714be12a687903.js.map
+//# sourceMappingURL=main.dea0c38099112d5810ad.js.map

@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Thank you for the registration</title>
+    <style>
+      html {
+        background: #FFF9ED;
+        font-family: sans-serif;
+        color: #1E1E1E;
+      }
+      img {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Thank you for the registration</h1>
+    <h2>Your account number: {{data.account}}</h2>
+    <p><b>{{orderDate}}</b></p>
+
+    <img alt="Embedded Image" height="128" width="128" src={{{data.qr}}}>
+  </body>
+</html>

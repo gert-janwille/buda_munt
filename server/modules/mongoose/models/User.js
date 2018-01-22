@@ -22,6 +22,24 @@ const schema = new Schema({
     unique: true
   },
 
+  phone: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
+  account: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
+  qr: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
   scope: {
     type: String,
     default: Scopes.USER
