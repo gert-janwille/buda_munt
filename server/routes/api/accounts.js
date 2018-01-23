@@ -1,6 +1,6 @@
 const {Account} = require(`mongoose`).models;
 const jwt = require(`jsonwebtoken`);
-const {pick, omit, isEmpty} = require(`lodash`);
+const {omit, isEmpty} = require(`lodash`);
 const {SECRET: secret} = process.env;
 
 const Joi = require(`joi`);
@@ -59,18 +59,22 @@ module.exports = [
         if (token.account === qr.account) return res(Boom.badRequest(`Same card`));
         if (![`receive`, `sent`].includes(_action)) return res(Boom.badRequest(`Invalid action`));
 
+        // Set users
         let accountWithPin, otherAccount;
         switch (_action) {
+
         case `receive`:
           accountWithPin = qr;
           otherAccount = token;
           break;
+
         case `sent`:
           accountWithPin = token;
           otherAccount = qr;
           break;
         }
 
+        // Make transaction strings
         const transactionOther = `Received ${_amount} from ${accountWithPin.account}`;
         const transactionPayer = `Sented ${_amount} to ${otherAccount.account}`;
 
@@ -112,13 +116,13 @@ module.exports = [
 
       } catch (e) {
         console.log(e);
-        res(Boom.badRequest(`Invalid QR code`));
+        return res(Boom.badRequest(`Invalid QR code`));
       }
     }
   }
 ];
 
-
+// Function to remove amount
 const removeAmount = (account, amout, transaction) => {
   return Account.findOneAndUpdate(
     {
@@ -136,6 +140,7 @@ const removeAmount = (account, amout, transaction) => {
   });
 };
 
+// Function to add amount
 const addAmount = (account, amount, transaction) => {
   return Account.findOneAndUpdate(
     {
