@@ -113,12 +113,9 @@ module.exports = [
       //isActive
       conditions.isActive = !q.isActive && String(q.isActive) !== `undefined` ? false : true;
 
-
-      console.log(conditions);
       Activity.find(isEmpty(conditions) ? `` : conditions).sort({created: `desc`})
-          .then(products => {
-            if (isEmpty(products)) return res(Boom.notFound());
-            return res(products);
+          .then(activities => {
+            return isEmpty(activities) ? res(Boom.notFound()) : res(activities);
           })
           .catch(() => res(Boom.badRequest()));
     }

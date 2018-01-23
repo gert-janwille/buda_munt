@@ -85,7 +85,7 @@ module.exports = [
               account.save()
                 .then(account => {
                   if (!account) return res(Boom.badRequest(`cannot create account`));
-                  account = omit(account.toJSON(), [`__v`, `_id`, `modified`, `created`, `isActive`]);
+                  account = omit(account.toJSON(), [`__v`, `_id`, `pin`, `modified`, `created`, `isActive`]);
                   u = omit(u.toJSON(), [`__v`, `account`, `password`, `modified`]);
 
                   // Prepare data for email
