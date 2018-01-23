@@ -103,11 +103,13 @@ module.exports = [
                   u = omit(u, [`subject`, `mailtype`]);
 
                   // Save image
-                  const prefix = `./server/uploads/`;
-                  const filename = `${account.account}.jpg`;
-                  fs.writeFile(prefix + filename, data.file, `binary`, err => {
-                    if (err) return res(Boom.badRequest(`Error while saving picture`));
-                  });
+                  if (data.file) {
+                    const prefix = `./server/uploads/`;
+                    const filename = `${account.account}.jpg`;
+                    fs.writeFile(prefix + filename, data.file, `binary`, err => {
+                      if (err) return res(Boom.badRequest(`Error while saving picture`));
+                    });
+                  }
 
                   return res(u);
                 })
