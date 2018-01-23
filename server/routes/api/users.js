@@ -1,9 +1,7 @@
 const fs = require(`fs`);
-const path = require(`path`);
 const QRCode = require(`qrcode`);
 const {User} = require(`mongoose`).models;
 const {Account} = require(`mongoose`).models;
-const multer  = require(`multer`);
 
 const {pick, omit} = require(`lodash`);
 
