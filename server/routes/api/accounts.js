@@ -60,14 +60,6 @@ module.exports = [
         if (![`receive`, `sent`].includes(_action)) return res(Boom.badRequest(`Invalid action`));
 
         let accountWithPin, otherAccount;
-        if (_action === `receive`) {
-          accountWithPin = qr;
-          otherAccount = token;
-        } else if (_action === `sent`) {
-          accountWithPin = token;
-          otherAccount = qr;
-        }
-
         switch (_action) {
         case `receive`:
           accountWithPin = qr;
