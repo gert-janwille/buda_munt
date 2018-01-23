@@ -1,6 +1,9 @@
+const fs = require(`fs`);
+const path = require(`path`);
 const QRCode = require(`qrcode`);
 const {User} = require(`mongoose`).models;
 const {Account} = require(`mongoose`).models;
+const multer  = require(`multer`);
 
 const {pick, omit} = require(`lodash`);
 
@@ -35,13 +38,17 @@ module.exports = [
         },
 
         payload: {
+          output: `stream`,
+          parse: true,
+          allow: `multipart/form-data`,
           username: Joi.string().min(3).required(),
           email: Joi.string().email().required(),
           phone: Joi.string().required(),
           password: Joi.string().min(3).required(),
           pin: Joi.string().min(4).max(4).required(),
           isActive: Joi.boolean(),
-          scope: Joi.string().min(3)
+          scope: Joi.string().min(3),
+          file: Joi.any()
         }
 
       }
@@ -50,7 +57,7 @@ module.exports = [
 
     handler: (req, res) => {
 
-      let fields = [`username`, `email`, `phone`, `password`, `pin`];
+      let fields = [`username`, `email`, `phone`, `password`, `pin`, `file`];
 
       if (req.payload.scope === Scopes.ADMIN) {
         fields = [...fields, `isActive`, `scope`];
@@ -96,6 +103,13 @@ module.exports = [
                   // Send email & remove mail types
                   mail(u, u.email);
                   u = omit(u, [`subject`, `mailtype`]);
+
+                  // Save image
+                  const prefix = `./server/uploads/`;
+                  const filename = `${account.account}.jpg`;
+                  fs.writeFile(prefix + filename, data.file, `binary`, err => {
+                    if (err) return res(Boom.badRequest(`Error while saving picture`));
+                  });
 
                   return res(u);
                 })
