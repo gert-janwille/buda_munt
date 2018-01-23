@@ -8,6 +8,62 @@ const Boom = require(`boom`);
 const base = `/api`;
 
 module.exports = [
+  {
+
+    method: `GET`,
+    path: `${base}/activities`,
+
+    config: {
+
+      validate: {
+
+        options: {
+          abortEarly: false,
+          allowUnknown: true
+        },
+        query: {
+          id: Joi.string(),
+          username: Joi.string(),
+          title: Joi.string(),
+          type: Joi.string().min(1).max(1),
+          isActive: Joi.bool()
+        },
+
+        headers: {
+          authorization: Joi.string().required()
+        }
+      }
+
+    },
+
+    handler: (req, res) => {
+      // Validate token
+      const {authorization} = req.headers;
+      const token = jwt.decode(authorization);
+      if (!token) return res(Boom.badRequest(`No authorization header`));
+
+      // Generate conditions
+      const conditions = {};
+      const q = pick(req.query, [`id`, `username`, `type`, `title`, `isActive`]);
+
+      //id
+      if (!isEmpty(q.id)) conditions._id = q.id;
+      //username
+      if (!isEmpty(q.username)) conditions.username = new RegExp(`^${q.username}$`, `i`);
+      //type
+      if (!isEmpty(q.type)) conditions.type = new RegExp(`^${q.type}$`, `i`);
+      //title
+      if (!isEmpty(q.title)) conditions.title = new RegExp(q.title, `i`);
+      //isActive
+      conditions.isActive = !q.isActive && String(q.isActive) !== `undefined` ? false : true;
+
+      Activity.find(isEmpty(conditions) ? `` : conditions).sort({created: `desc`})
+          .then(activities => {
+            return isEmpty(activities) ? res(Boom.notFound()) : res(activities);
+          })
+          .catch(() => res(Boom.badRequest()));
+    }
+  },
 
   {
 
@@ -66,8 +122,8 @@ module.exports = [
 
   {
 
-    method: `GET`,
-    path: `${base}/activities`,
+    method: `PUT`,
+    path: `${base}/activities/{_action?}`,
 
     config: {
 
@@ -79,14 +135,14 @@ module.exports = [
         },
         query: {
           id: Joi.string(),
-          username: Joi.string(),
-          title: Joi.string(),
-          type: Joi.string().min(1).max(1),
-          isActive: Joi.bool()
         },
 
         headers: {
           authorization: Joi.string().required()
+        },
+
+        params: {
+          _action: Joi.string().min(2)
         }
       }
 
@@ -98,26 +154,15 @@ module.exports = [
       const token = jwt.decode(authorization);
       if (!token) return res(Boom.badRequest(`No authorization header`));
 
-      // Generate conditions
-      const conditions = {};
-      const q = pick(req.query, [`id`, `username`, `type`, `title`, `isActive`]);
+      const {_action} = req.params;
+      const {id: _id} = req.query;
 
-      //id
-      if (!isEmpty(q.id)) conditions._id = q.id;
-      //username
-      if (!isEmpty(q.username)) conditions.username = new RegExp(`^${q.username}$`, `i`);
-      //type
-      if (!isEmpty(q.type)) conditions.type = new RegExp(`^${q.type}$`, `i`);
-      //title
-      if (!isEmpty(q.title)) conditions.title = new RegExp(q.title, `i`);
-      //isActive
-      conditions.isActive = !q.isActive && String(q.isActive) !== `undefined` ? false : true;
+      if (_action === `comment`) {
+        return res({id: _id});
+      }
 
-      Activity.find(isEmpty(conditions) ? `` : conditions).sort({created: `desc`})
-          .then(activities => {
-            return isEmpty(activities) ? res(Boom.notFound()) : res(activities);
-          })
-          .catch(() => res(Boom.badRequest()));
+      return res(token);
     }
   },
+
 ];
