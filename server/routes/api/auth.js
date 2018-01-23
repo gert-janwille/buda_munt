@@ -65,7 +65,7 @@ module.exports = [
           }
 
           const {_id: subject} = user;
-          user = omit(user.toJSON(), [`__v`, `password`, `isActive`, `_id`, `created`]);
+          user = omit(user.toJSON(), [`__v`, `qr`, `password`, `isActive`, `_id`, `created`]);
           return res.token(user, {subject, audience});
 
         });

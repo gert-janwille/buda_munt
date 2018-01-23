@@ -1,9 +1,11 @@
 const QRCode = require(`qrcode`);
 const {User} = require(`mongoose`).models;
+const {Account} = require(`mongoose`).models;
 
 const {pick, omit} = require(`lodash`);
 
 const Scopes = require(`../../modules/mongoose/const/Scopes`);
+const {SECRET: secret} = process.env;
 
 const Joi = require(`joi`);
 const Boom = require(`boom`);
@@ -37,6 +39,7 @@ module.exports = [
           email: Joi.string().email().required(),
           phone: Joi.string().required(),
           password: Joi.string().min(3).required(),
+          pin: Joi.string().min(4).max(4).required(),
           isActive: Joi.boolean(),
           scope: Joi.string().min(3)
         }
@@ -47,7 +50,7 @@ module.exports = [
 
     handler: (req, res) => {
 
-      let fields = [`username`, `email`, `phone`, `password`];
+      let fields = [`username`, `email`, `phone`, `password`, `pin`];
 
       if (req.payload.scope === Scopes.ADMIN) {
         fields = [...fields, `isActive`, `scope`];
@@ -59,39 +62,67 @@ module.exports = [
       data[`account`] = generateAccount(data);
 
       // Request QR code and save
-      QRCode.toDataURL(data[`account`])
+      const keyData = {
+        account: data[`account`],
+        secret: secret
+      };
+
+      // Encode the String
+      const encodedString = new Buffer(JSON.stringify(keyData)).toString(`base64`);
+      // Request QR data uri
+      QRCode.toDataURL(encodedString)
         .then(url => data[`qr`] = url)
         .then(() => {
           const user = new User(data);
 
+          // Save user
           user.save()
             .then(u => {
-              // Prepare data for email
-              u.subject = `Thank you for the registration!`;
-              u.mailtype = `register`;
-              mail(u, u.email);
-
-              // Save user
               if (!u) return res(Boom.badRequest(`cannot save user`));
-              u = omit(u.toJSON(), [`__v`, `password`, `isActive`]);
-              return res(u);
+              // Save the account
+              const account = new Account({account: u.account, pin: data.pin});
+
+              account.save()
+                .then(account => {
+                  if (!account) return res(Boom.badRequest(`cannot create account`));
+                  account = omit(account.toJSON(), [`__v`, `_id`, `modified`, `created`, `isActive`]);
+                  u = omit(u.toJSON(), [`__v`, `account`, `password`, `modified`]);
+
+                  // Prepare data for email
+                  u.subject = `Thank you for the registration!`;
+                  u.mailtype = `register`;
+                  u.account = account;
+
+                  // Send email & remove mail types
+                  mail(u, u.email);
+                  u = omit(u, [`subject`, `mailtype`]);
+
+                  return res(u);
+                })
+                .catch(() => res(Boom.badRequest(`cannot create account`)));
+
             })
-            .catch(err => res(err));
+            .catch(e => {
+              console.log(e);
+              res(Boom.badRequest(`cannot create account`));
+            });
 
         })
-        .catch(err => {
-          console.error(err);
+        .catch(e => {
+          console.log(e);
+          res(Boom.badRequest(`cannot create account`));
         });
     }
   }
 ];
+
 
 const generateAccount = data => {
   const u = data[`username`].charAt(0).toUpperCase();
   const e = data[`email`].charAt(0).toUpperCase();
 
   let acc = `BDA-`;
-  for (let i = 0;i <= 8;i ++) {
+  for (let i = 0;i <= 6;i ++) {
     acc += Math.floor(Math.random() * 10);
     if (i % 3 === 1)acc += `-`;
   }
