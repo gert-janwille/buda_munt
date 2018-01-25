@@ -33,11 +33,11 @@ const schema = new Schema({
   },
 
   doneBy: {
-    type: Array,
-    default: []
+    type: Object,
+    default: {}
   },
 
-  payed: {
+  paid: {
     type: Boolean,
     default: false
   },

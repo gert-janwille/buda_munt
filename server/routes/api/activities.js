@@ -133,9 +133,6 @@ module.exports = [
           abortEarly: false,
           allowUnknown: true
         },
-        query: {
-          id: Joi.string(),
-        },
 
         headers: {
           authorization: Joi.string().required()
@@ -143,6 +140,15 @@ module.exports = [
 
         params: {
           _action: Joi.string().min(2)
+        },
+
+        query: {
+          id: Joi.string().required(),
+        },
+
+        payload: {
+          comment: Joi.string(),
+          doneby: Joi.string()
         }
       }
 
@@ -154,15 +160,73 @@ module.exports = [
       const token = jwt.decode(authorization);
       if (!token) return res(Boom.badRequest(`No authorization header`));
 
+      const {paid} = req.payload;
       const {_action} = req.params;
       const {id: _id} = req.query;
 
-      if (_action === `comment`) {
-        return res({id: _id});
+      const data = {};
+      let insert = {};
+
+
+      switch (_action) {
+      case `comment`:
+        data[`comments`] = addcomment(req, res);
+        insert = {$push: data};
+        break;
+      case `paid`:
+        data[`paid`] = setpaid(req, res);
+        data[`isActive`] = (paid === `true`) ? false : true;
+        insert = {$set: data};
+        break;
+      case `doneby`:
+        data[`doneBy`] = setDoneBy(req, res);
+        insert = {$set: data};
+        break;
+      default:
+        return res(Boom.badRequest(`No valid function found.`));
       }
 
-      return res(token);
+      Activity.findOneAndUpdate({_id}, insert, {new: true})
+        .then(activity => {
+          return res(activity);
+        })
+        .catch(err => {
+          console.log(err);
+          return res(err);
+        });
     }
   },
 
 ];
+
+const addcomment = (req, res) => {
+  const {comment} = req.payload;
+  if (!comment) return res(Boom.badRequest(`No comment in payload`));
+
+  const data = JSON.parse(comment);
+  const error = validateObject(data, [`username`, `account`, `description`, `date`]);
+  if (!isEmpty(error)) return res(error).code(400);
+  return data;
+};
+
+const setpaid = (req, res) => {
+  const {paid} = req.payload;
+  if (paid === undefined) return res(Boom.badRequest(`No paid in payload`));
+  return paid;
+};
+
+const setDoneBy = (req, res) => {
+  const {doneby} = req.payload;
+  if (!doneby) return res(Boom.badRequest(`No doneby in payload`));
+
+  const data = JSON.parse(doneby);
+  const error = validateObject(data, [`username`, `account`]);
+  if (!isEmpty(error)) return res(error).code(400);
+  return data;
+};
+
+const validateObject = (obj, key) => {
+  const error = {};
+  key.map(k => !obj.hasOwnProperty(k) ? error[k] = `please add a ${k}` : ``);
+  return error;
+};
