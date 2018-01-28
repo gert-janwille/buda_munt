@@ -15704,7 +15704,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores__ = __webpack_require__(103);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = '/Users/user/Desktop/BUDA/src/js/script.js';
+var _jsxFileName = '/Users/user/Desktop/BUDA/web/src/js/script.js';
 /* eslint-disable react/jsx-filename-extension */
 
 
@@ -15768,7 +15768,7 @@ init();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mobx_react_devtools___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_mobx_react_devtools__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_router_dom__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Home__ = __webpack_require__(102);
-var _jsxFileName = '/Users/user/Desktop/BUDA/src/js/containers/App.jsx';
+var _jsxFileName = '/Users/user/Desktop/BUDA/web/src/js/containers/App.jsx';
 
 
 
@@ -15851,7 +15851,7 @@ App.propTypes = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _jsxFileName = '/Users/user/Desktop/BUDA/src/js/containers/Home.jsx';
+var _jsxFileName = '/Users/user/Desktop/BUDA/web/src/js/containers/Home.jsx';
 
 
 var Home = function Home() {
@@ -30433,4 +30433,4 @@ module.exports = __webpack_require__(99);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.dea0c38099112d5810ad.js.map
+//# sourceMappingURL=main.e16b973b2942b1f1c962.js.map
