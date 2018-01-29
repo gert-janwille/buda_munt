@@ -15704,7 +15704,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores__ = __webpack_require__(105);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = '/Users/user/Desktop/BUDA/web/src/js/script.js';
+var _jsxFileName = '/Users/user/Desktop/BUDA/src/js/script.js';
 /* eslint-disable react/jsx-filename-extension */
 
 
@@ -15761,7 +15761,7 @@ init();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(29);
-var _jsxFileName = '/Users/user/Desktop/BUDA/web/src/js/components/footer/index.js';
+var _jsxFileName = '/Users/user/Desktop/BUDA/src/js/components/footer/index.js';
 /* eslint-disable react/jsx-filename-extension */
 
 
@@ -15899,7 +15899,7 @@ Footer.displayName = 'Footer';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(29);
-var _jsxFileName = '/Users/user/Desktop/BUDA/web/src/js/components/navigation/index.js';
+var _jsxFileName = '/Users/user/Desktop/BUDA/src/js/components/navigation/index.js';
 /* eslint-disable react/jsx-filename-extension */
 
 
@@ -16061,7 +16061,7 @@ Navigation.displayName = 'Navigation';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Home__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_navigation__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_footer__ = __webpack_require__(101);
-var _jsxFileName = '/Users/user/Desktop/BUDA/web/src/js/containers/App.jsx';
+var _jsxFileName = '/Users/user/Desktop/BUDA/src/js/containers/App.jsx';
 
 
 
@@ -16173,7 +16173,7 @@ App.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mobx_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(29);
-var _jsxFileName = '/Users/user/Desktop/BUDA/web/src/js/containers/Home.jsx';
+var _jsxFileName = '/Users/user/Desktop/BUDA/src/js/containers/Home.jsx';
 
 
 
@@ -16181,23 +16181,21 @@ var _jsxFileName = '/Users/user/Desktop/BUDA/web/src/js/containers/Home.jsx';
 var Home = function Home() {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'main',
-    {
-      __source: {
+    { className: 'home-container', __source: {
         fileName: _jsxFileName,
         lineNumber: 6
       }
     },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'section',
-      {
-        __source: {
+      'header',
+      { className: 'home-header', __source: {
           fileName: _jsxFileName,
           lineNumber: 7
         }
       },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'h1',
-        { className: 'poppins-bol', __source: {
+        { className: 'poppins-bol home-title heading', __source: {
             fileName: _jsxFileName,
             lineNumber: 8
           }
@@ -16206,21 +16204,19 @@ var Home = function Home() {
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        {
-          __source: {
+        { className: 'fold-holder', __source: {
             fileName: _jsxFileName,
             lineNumber: 10
           }
         },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'article',
-          {
-            __source: {
+          'section',
+          { className: 'home-split home-split-left', __source: {
               fileName: _jsxFileName,
               lineNumber: 11
             }
           },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: './assets/img/main-buda-community.png', alt: 'illustratie van de buda munt comunity', __source: {
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { width: '100%', src: './assets/img/main-buda-community.png', alt: 'illustratie van de buda munt comunity', __source: {
               fileName: _jsxFileName,
               lineNumber: 12
             }
@@ -16237,17 +16233,15 @@ var Home = function Home() {
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'article',
-          {
-            __source: {
+          'section',
+          { className: 'home-split home-split-right', __source: {
               fileName: _jsxFileName,
               lineNumber: 16
             }
           },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            {
-              __source: {
+            'article',
+            { className: 'home-article-item', __source: {
                 fileName: _jsxFileName,
                 lineNumber: 18
               }
@@ -16264,21 +16258,26 @@ var Home = function Home() {
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
-              { className: 'button', __source: {
+              { className: 'button home-deco-container', __source: {
                   fileName: _jsxFileName,
                   lineNumber: 20
                 }
               },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'icon hamburger', __source: {
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'line line-short', __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 20
+                  lineNumber: 21
+                }
+              }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'icon-overlay hamburger', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 22
                 }
               }),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Link */],
                 { to: '/overzicht', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 20
+                    lineNumber: 23
                   }
                 },
                 'Bekijk het overzicht'
@@ -16286,18 +16285,17 @@ var Home = function Home() {
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            {
-              __source: {
+            'article',
+            { className: 'home-article-item', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 23
+                lineNumber: 27
               }
             },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'h2',
               { className: 'poppins-bol', __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 24
+                  lineNumber: 28
                 }
               },
               'Bent u een handelaar \x03of artiest?'
@@ -16307,28 +16305,33 @@ var Home = function Home() {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 25
+                  lineNumber: 29
                 }
               },
               'Wilt u mee gebruik maken van Buda-munten in uw caf\xE9? Bent u een artiest met een kleine band die graag zou willen optreden bij burgers thuis? Vul dan snel ons formulier in om deel te nemen aan ons concept.'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
-              { className: 'button', __source: {
+              { className: 'button home-deco-container', __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 26
+                  lineNumber: 30
                 }
               },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'icon plane', __source: {
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'line line-long', __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 26
+                  lineNumber: 31
+                }
+              }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'icon-overlay plane', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 32
                 }
               }),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Link */],
                 { to: '/inschrijven', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 26
+                    lineNumber: 33
                   }
                 },
                 'Schrijf je in'
@@ -30898,4 +30901,4 @@ module.exports = __webpack_require__(99);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.9cc70920980e8221a749.js.map
+//# sourceMappingURL=main.c77e10cc7dc859113a38.js.map
