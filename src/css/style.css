@@ -46,6 +46,10 @@ body {
   font-weight: 900;
 }
 
+.green-color {
+  color: var(--green);
+}
+
 .grey-color {
   color: var(--grey);
 }
@@ -56,6 +60,16 @@ body {
 
 .heading {
   font-size: 3rem;
+  line-height: 140%;
+}
+
+.heading2 {
+  font-size: 2.5rem;
+  line-height: 120%;
+}
+
+.heading3 {
+  font-size: 1.8rem;
   line-height: 120%;
 }
 
@@ -64,8 +78,18 @@ body {
 }
 
 a {
+  cursor: pointer;
   text-decoration: none;
   color: var(--green);
+  transition: all .3s ease;
+}
+
+a:hover {
+  color: var(--blue);
+}
+
+p {
+  line-height: 160%;
 }
 
 .logo {
@@ -117,6 +141,11 @@ a {
       display: flex;
       padding-top: 8%;
       height: 100%;
+      transition: all .3s ease;
+
+      &:hover {
+        transform: rotate(-15deg) scale(1.1);
+      }
     }
   }
 
@@ -134,7 +163,8 @@ a {
 
   & .home-title {
     color: var(--grey);
-    width: 55%;
+    width: 50%;
+    margin-bottom: 5vh;
   }
 
   & .fold-holder {
@@ -145,8 +175,18 @@ a {
     width: 50%;
   }
 
+  & .home-split-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & p {
+      width: 60%;
+      margin-bottom: 2rem;
+    }
+  }
+
   & .home-split-right {
-    line-height: 160%;
     border-left: 1px solid #e5e5e5;
   }
 
@@ -154,6 +194,15 @@ a {
 
     & p, & h2 {
       padding-left: 5rem;
+      max-width: 100%;
+    }
+
+    & p {
+      margin-bottom: 8rem;
+    }
+
+    & h2 {
+      margin: 3rem 0 5rem;
     }
 
     & .line {
@@ -193,6 +242,30 @@ a {
       justify-content: flex-start;
     }
   }
+}
+
+.home-activities-overview {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10vh 0;
+}
+
+.home-activities-item {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & .cont {
+    width: 60%;
+  }
+
+  & h3 {
+    margin: 2rem 0;
+    border-bottom: 1px solid var(--green);
+  }
+
 }
 
 .footer {
