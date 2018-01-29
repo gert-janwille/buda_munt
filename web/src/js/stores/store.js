@@ -2,8 +2,7 @@ import {observable} from 'mobx';
 
 class Store {
 
-  @observable
-  name = `BudaMunt`
+  @observable name = `BudaMunt`
 
 }
 

@@ -1,10 +1,42 @@
 import React from 'react';
+import {inject, observer} from 'mobx-react';
+import {Link} from 'react-router-dom';
 
 const Home = () => (
-  <section>
-    <p>Home ... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, sit.</p>
-    <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAklEQVR4AewaftIAAAKeSURBVO3BQY7cQAwEwUxC//9yeY88NSBIM/bSjDA/WGMUa5RijVKsUYo1SrFGKdYoxRqlWKMUa5RijVKsUYo1SrFGKdYoxRrl4iGVb0rCicoTSehUvikJTxRrlGKNUqxRLl6WhDep3JGETuUkCXck4U0qbyrWKMUapVijXHyYyh1JuEPlJAmdSqfSJeEOlTuS8EnFGqVYoxRrlIvhVLokdCqTFGuUYo1SrFEuhklCp/I/KdYoxRqlWKNcfFgSJkvCv6RYoxRrlGKNcvEylclU/mXFGqVYoxRrlIuHkjBZEn6TYo1SrFGKNcrFQypdEjqVNyWhS8JJEp5QeVMSPqlYoxRrlGKNcvFQEjqVO5LQqXRJeEKlS8KJSpeETuUkCZ3KNxVrlGKNUqxRLj4sCScqXRI6lS4JncpJEp5Q6ZLQqXQqXRI6lZMkPFGsUYo1SrFGuXhZEk5U7kjCSRI6lU6lS8JJEjqV36RYoxRrlGKNcvEylZMkdCqdykkSOpU7VO5IwhMq31SsUYo1SrFGMT/4xVS6JJyo3JGEO1TuSMKbijVKsUYp1igXD6l8UxK6JHQqf1MS7lDpkvBEsUYp1ijFGuXiZUl4k8qJykkSTlROVE6S0KnckYQ3FWuUYo1SrFEuPkzljiS8SeWOJJyodCpdEjqVLgmdSpeEJ4o1SrFGKdYoF8MkoVM5SUKn0iWhS0Kn0qnckYQ3FWuUYo1SrFEuhlHpktCpdConKnckoVP5pmKNUqxRijXKxYcl4ZOS8EQSTlS6JJyodEk4UemS8ESxRinWKMUa5eJlKt+k0iWhU7lDpUtCp/KmJLypWKMUa5RijWJ+sMYo1ijFGqVYoxRrlGKNUqxRijVKsUYp1ijFGqVYoxRrlGKNUqxRijXKHyvg7gWCju0yAAAAAElFTkSuQmCC' />
-  </section>
+  <main>
+    <section>
+      <h1 className='poppins-bol'>De Buda-munt, een uitmuntende manier om te betalen op het Buda-eiland.</h1>
+
+      <div>
+        <article>
+          <img src='./assets/img/main-buda-community.png' alt='illustratie van de buda munt comunity' />
+          <p>Zou je graag Buda-munten willen? Er zijn verschillende manieren om ze te verdienen.</p>
+        </article>
+
+        <article>
+
+          <div>
+            <p>Kan je toevallig heel goed klussen, voorlezen, babysitten,...? Maak dan snel een account aan om Buda-munten (BDA) te verzamelen. Met deze munt willen we de samenleving op het Buda-eiland versterken. Niemand wordt uitgesloten, iedere burger kan een steentje bijdragen of om hulp vragen.</p>
+            <div className='button'><span className='icon hamburger'></span><Link to={`/overzicht`}>Bekijk het overzicht</Link></div>
+          </div>
+
+          <div>
+            <h2 className='poppins-bol'>Bent u een handelaar of artiest?</h2>
+            <p>Wilt u mee gebruik maken van Buda-munten in uw café? Bent u een artiest met een kleine band die graag zou willen optreden bij burgers thuis? Vul dan snel ons formulier in om deel te nemen aan ons concept.</p>
+            <div className='button'><span className='icon plane'></span><Link to={`/inschrijven`}>Schrijf je in</Link></div>
+          </div>
+
+        </article>
+      </div>
+
+    </section>
+  </main>
 );
 
-export default Home;
+export default inject(
+  ({store}) => ({
+    name: store.name
+  })
+)(
+  observer(Home)
+);
