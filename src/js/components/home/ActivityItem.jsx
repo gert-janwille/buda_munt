@@ -1,21 +1,39 @@
 import React from 'react';
-import {string, number} from 'prop-types';
+import {inject, observer} from 'mobx-react';
+import {string, number, func} from 'prop-types';
 
-const ActivityItem = ({title, img, short, width}) => (
-  <a className='home-activities-item'>
+const ActivityItem = ({id, title, img, short, width, handlePopup}) => {
+
+  const handleShowActivityDetail = e => {
+    e.preventDefault();
+    handlePopup(id);
+  };
+
+  return (
+  <a href='#' className='home-activities-item nohover' onClick={handleShowActivityDetail}>
     <img width='100%' src={`../assets/img/activities/${img}`} alt={`illustratie over ${title}`} />
-    <div className='cont'>
+    <div className='activities-container'>
       <h3 style={{width: `${width}%`}} className='poppins-bol green-color heading3'>{title}</h3>
-      <p>{short}</p>
+      <p className='short-text'>{short}</p>
+      <p className='read-more'>Lees meer &gt;</p>
     </div>
   </a>
-);
+  );
+};
 
 ActivityItem.propTypes = {
+  id: number.isRequired,
   title: string.isRequired,
   img: string.isRequired,
   short: string.isRequired,
-  width: number.isRequired
+  width: number.isRequired,
+  handlePopup: func.isRequired
 };
 
-export default ActivityItem;
+export default inject(
+  ({activityStore}) => ({
+    handlePopup: activityStore.handlePopup
+  })
+)(
+  observer(ActivityItem)
+);

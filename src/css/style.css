@@ -73,6 +73,11 @@ body {
   line-height: 120%;
 }
 
+.heading4 {
+  font-size: 1.3rem;
+  line-height: 120%;
+}
+
 .hidden {
   visibility: hidden;
 }
@@ -84,7 +89,7 @@ a {
   transition: all .3s ease;
 }
 
-a:hover {
+a:not(.nohover):hover {
   color: var(--blue);
 }
 
@@ -101,6 +106,21 @@ p {
   border: 1px solid var(--blue);
   border-radius: .5vw;
   padding: .5vh 2vw;
+}
+
+.roud-btn {
+  width: 5vw;
+  height: 5vw;
+  background: white;
+  border: .3vw solid var(--green);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.underline {
+  border-bottom: 1px solid var(--green);
 }
 
 .navigation {
@@ -154,11 +174,8 @@ p {
   }
 }
 
-.home-container {
-  padding: 0 8vw;
-}
-
 .home-header {
+  padding: 0 8vw;
   color: var(--grey);
 
   & .home-title {
@@ -244,11 +261,26 @@ p {
   }
 }
 
-.home-activities-overview {
-  display: flex;
-  justify-content: space-between;
+.home-activities-overview,
+.home-activities-popup {
   width: 100%;
   margin: 10vh 0;
+}
+
+.home-activities-overview {
+  height: 65vh;
+  padding: 0 8vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-activities-popup {
+  position: relative;
+  background: var(--green);
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .home-activities-item {
@@ -257,16 +289,95 @@ p {
   flex-direction: column;
   align-items: center;
 
-  & .cont {
+  & .activities-container {
     width: 60%;
+
+    & .short-text {
+      color: var(--grey);
+      height: 15vh;
+    }
+
+    & .read-more {
+      display: inline-block;
+      color: var(--blue);
+      align-self: flex-start;
+      border-bottom: 1px solid var(--blue);
+      padding-bottom: .8vh;
+      line-height: 120%;
+    }
   }
 
   & h3 {
     margin: 2rem 0;
     border-bottom: 1px solid var(--green);
   }
-
 }
+
+/* Home pop up activities */
+
+.home-popup {
+  position: relative;
+  background: white;
+  width: 75%;
+  border-radius: .5vw;
+  padding: 5vh 3vw;
+
+  & .overlay-button {
+    position: absolute;
+  }
+}
+
+.activity-header {
+  margin-bottom: 2vh;
+
+  & h3 {
+    display: flex;
+    align-items: center;
+
+    & img {
+      width: 3vw;
+      margin-right: 1rem;
+    }
+  }
+
+  & .activity-title-underline {
+    height: 1px;
+    background: var(--green);
+    margin-left: 8%;
+  }
+}
+
+.activity-description {
+  padding-bottom: 5vh;
+}
+
+.overlay-button {
+  font-size: 5rem;
+  color: var(--light-grey);
+}
+
+.activity-close {
+  top: -2.5vw;
+  right: 1vw;
+  transform: rotate(45deg);
+}
+
+.activity-next {
+  top: 45%;
+  right: -2.5vw;
+}
+
+.activity-previous {
+  top: 45%;
+  left: -2.5vw;
+}
+
+.popup-google-map {
+  position: relative;
+  height: 20vh;
+}
+
+/* Footer */
 
 .footer {
   margin-top: 2rem;
@@ -294,5 +405,24 @@ p {
     & .footer-contact-item {
       margin-bottom: 1.5rem;
     }
+  }
+}
+
+/* Google Styles */
+
+.google-marker {
+
+  & p {
+    font-size: 1.3rem;
+    color: var(--grey);
+  }
+
+  & .marker {
+    flex-grow: 1;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 100%;
+    background: white;
+    border: .5vw solid var(--green);
   }
 }

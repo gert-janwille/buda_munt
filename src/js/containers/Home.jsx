@@ -1,12 +1,12 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {Link} from 'react-router-dom';
+import {bool} from 'prop-types';
 
-import ActivityItem from '../components/home/ActivityItem';
+import ItemHolder from '../components/home/ItemHolder';
+import PopUpActivity from '../components/home/PopUpActivity';
 
-import {activities} from '../../assets/data/activities.json';
-
-const Home = () => (
+const Home = ({isPopUpOpen}) => (
     <main className='home-container'>
       <header className='home-header'>
 
@@ -25,7 +25,7 @@ const Home = () => (
           <section className='home-split home-split-right'>
 
             <article className='home-article-item'>
-              <p>Kan je toevallig heel goed klussen, voorlezen, babysitten,...? Maak dan snel een account aan om Buda-munten (BDA) te verzamelen. Met deze munt willen we de samenleving op het Buda-eiland versterken. Niemand wordt uitgesloten, iedere burger kan een steentje bijdragen of om hulp vragen.</p>
+              <p>Kan je toevallig <span className='underline'>heel goed klussen, voorlezen, babysitten,...?</span> Maak dan snel een account aan om <span className='underline'>Buda-munten</span> (BDA) te verzamelen. Met deze munt willen we de samenleving op het Buda-eiland versterken. Niemand wordt uitgesloten, iedere burger kan een steentje bijdragen of om hulp vragen.</p>
               <div className='button home-deco-container'>
                 <span className='line line-short'></span>
                 <span className='icon-overlay hamburger'></span>
@@ -34,8 +34,8 @@ const Home = () => (
             </article>
 
             <article className='home-article-item'>
-              <h2 className='poppins-bol heading2'>Bent u een handelaar of artiest?</h2>
-              <p>Wilt u mee gebruik maken van Buda-munten in uw café? Bent u een artiest met een kleine band die graag zou willen optreden bij burgers thuis? Vul dan snel ons formulier in om deel te nemen aan ons concept.</p>
+              <h2 className='poppins-bol heading2'>Hebt u zin om mee te doen?</h2>
+              <p>Wilt u mee gebruik maken van Buda-munten in <span className='underline'>uw café?</span> Bent u een artiest met <span className='underline'>een kleine band</span> die graag zou willen optreden bij burgers thuis? Bent u <span className='underline'>een bewoner of bezoeker</span> en wilt u anderen helpen of hulp vragen? <span className='underline'>Vul dan snel ons formulier in</span> om deel te nemen aan ons concept.</p>
               <div className='button home-deco-container'>
                 <span className='line line-long'></span>
                 <span className='icon-overlay plane'></span>
@@ -50,20 +50,19 @@ const Home = () => (
       </header>
 
       <section className='home-activities'>
-        <article className='home-activities-popup'></article>
-
-        <article className='home-activities-overview'>
-          {activities.map(activity => <ActivityItem key={activity.id} {...activity} />)}
-        </article>
-
+        {!isPopUpOpen ? <ItemHolder /> : <PopUpActivity />}
       </section>
 
     </main>
   );
 
+Home.propTypes = {
+  isPopUpOpen: bool.isRequired
+};
+
 export default inject(
-  ({store}) => ({
-    name: store.name
+  ({activityStore}) => ({
+    isPopUpOpen: activityStore.isPopUpOpen
   })
 )(
   observer(Home)

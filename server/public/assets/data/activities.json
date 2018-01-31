@@ -1,28 +1,40 @@
 {
   "activities": [
     {
-      "id": 1,
+      "id": 0,
       "title": "Fietsen",
       "width": 50,
       "img": "home-fietsen.png",
       "short": "Spring op de fiets, lever elektriciteit en doe iets voor het milieu.",
-      "description": "In het midden van Buda-eiland staat een fiets waar u uw Buda-kaart kunt laten scannen en munten kunt verdienen. Lever elektriciteit aan de stad door ter plaatste te fietsen en verdien op die manier uw munten. Kom fietsen in de overdekte plaats die zich plaats vindt op de Budastraat 1. U kan zowel uw kaart gebruiken als fysieke munten ontvangen."
+      "description": "In het midden van Buda-eiland staat een fiets waar u uw Buda-kaart kunt laten scannen en munten kunt verdienen. Lever elektriciteit aan de stad door ter plaatste te fietsen en verdien op die manier uw munten. Kom fietsen in de overdekte plaats die zich plaats vindt op de Budastraat 1. U kan zowel uw kaart gebruiken als fysieke munten ontvangen.",
+      "location": {
+        "lat": 50.830526,
+        "lng": 3.263562
+      }
     },
     {
-      "id": 2,
+      "id": 1,
       "title": "Spelen",
       "width": 45,
       "img": "home-spelen.png",
       "short": "Ben je meer het rustige type? Verdien munten op een ontspannende manier",
-      "description": "dummy"
+      "description": "dummy",
+      "location": {
+        "lat": 50.830526,
+        "lng": 3.263562
+      }
     },
     {
-      "id": 3,
+      "id": 2,
       "title": "Opruimen",
       "width": 65,
       "img": "home-opruimen.png",
       "short": "Hou je het graag proper? Hou dan de straten schoon in ruil voor munten.",
-      "description": "dummy"
+      "description": "dummy",
+      "location": {
+        "lat": 50.830526,
+        "lng": 3.263562
+      }
     }
   ]
 }
