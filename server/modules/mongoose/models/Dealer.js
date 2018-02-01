@@ -2,17 +2,7 @@ const Schema = require(`mongoose`).Schema;
 
 const schema = new Schema({
 
-  username: {
-    type: String,
-    required: true
-  },
-
-  type: {
-    type: String,
-    required: true
-  },
-
-  title: {
+  name: {
     type: String,
     required: true
   },
@@ -22,29 +12,9 @@ const schema = new Schema({
     required: true
   },
 
-  comments: {
-    type: Array,
-    default: []
-  },
-
-  price: {
-    type: Number,
+  account: {
+    type: String,
     required: true
-  },
-
-  hasInterest: {
-    type: Array,
-    default: []
-  },
-
-  doneBy: {
-    type: Object,
-    default: {}
-  },
-
-  paid: {
-    type: Boolean,
-    default: false
   },
 
   isActive: {

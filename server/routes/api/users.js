@@ -2,6 +2,7 @@ const fs = require(`fs`);
 const QRCode = require(`qrcode`);
 const {User} = require(`mongoose`).models;
 const {Account} = require(`mongoose`).models;
+const {Dealer} = require(`mongoose`).models;
 
 const {pick, omit} = require(`lodash`);
 
@@ -46,7 +47,9 @@ module.exports = [
           pin: Joi.string().min(4).max(4).required(),
           isActive: Joi.boolean(),
           scope: Joi.string().min(3),
-          file: Joi.any()
+          file: Joi.any(),
+          dealer: Joi.string(),
+          description: Joi.string()
         }
 
       }
@@ -55,7 +58,7 @@ module.exports = [
 
     handler: (req, res) => {
 
-      let fields = [`username`, `email`, `phone`, `password`, `pin`, `file`];
+      let fields = [`username`, `email`, `phone`, `password`, `pin`, `file`, `dealer`, `description`];
 
       if (req.payload.scope === Scopes.ADMIN) {
         fields = [...fields, `isActive`, `scope`];
@@ -98,14 +101,23 @@ module.exports = [
                   u.mailtype = `register`;
                   u.account = account;
 
-                  // Send email & remove mail types
+                  if (data.dealer && data.description) {
+                    const dealer = new Dealer({name: data.dealer, description: data.description, account: data.account});
+
+                    dealer.save()
+                      .then(dealer => {
+                        if (!dealer) return res(Boom.badRequest(`cannot create dealer`));
+                      });
+                  }
+
+                    // Send email & remove mail types
                   mail(u, u.email);
                   u = omit(u, [`subject`, `mailtype`]);
 
-                  // Save image
+                    // Save image
                   if (data.file) {
                     const prefix = `./server/uploads/`;
-                    const filename = `${account.account}.jpg`;
+                    const filename = `${data.username.toLowerCase().split(` `).join(`-`)}.jpg`;
                     fs.writeFile(prefix + filename, data.file, `binary`, err => {
                       if (err) return res(Boom.badRequest(`Error while saving picture`));
                     });

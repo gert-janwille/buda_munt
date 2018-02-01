@@ -27,21 +27,12 @@ module.exports = [
           title: Joi.string(),
           type: Joi.string().min(1).max(1),
           isActive: Joi.bool()
-        },
-
-        headers: {
-          authorization: Joi.string().required()
         }
       }
 
     },
 
     handler: (req, res) => {
-      // Validate token
-      const {authorization} = req.headers;
-      const token = jwt.decode(authorization);
-      if (!token) return res(Boom.badRequest(`No authorization header`));
-
       // Generate conditions
       const conditions = {};
       const q = pick(req.query, [`id`, `username`, `type`, `title`, `isActive`]);

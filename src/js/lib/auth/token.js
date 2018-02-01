@@ -1,13 +1,12 @@
-'use strict';
-
 import jwt from 'jsonwebtoken';
-import timestamp from '../lib/timestamp';
 
 export const get = () => localStorage.getItem(`token`);
 export const set = t => localStorage.setItem(`token`, t);
 
 export const content = () => jwt.decode(get());
 export const read = token => jwt.decode(token);
+
+export const timestamp = () => Math.floor(Date.now() / 1000);
 
 export const isValid = () => {
 

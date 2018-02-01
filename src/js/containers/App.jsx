@@ -6,6 +6,13 @@ import {inject, observer} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
 import Home from './Home';
+import Login from './Login';
+import Dashboard from './Dashboard';
+import Overzicht from './Overzicht';
+import Detail from './Detail';
+
+import PrivateRoute from '../components/privateroute';
+
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 
@@ -19,10 +26,13 @@ const App = () => (
     <section className='app-holder'>
       <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/overzicht' component={Home} />
+          <Route path='/overzicht/:title/:_id' component={Detail} />
+          <Route path='/overzicht' component={Overzicht} />
           <Route path='/inschrijven' component={Home} />
           <Route path='/contact' component={Home} />
-          <Route path='/login' component={Home} />
+          <Route path='/login' component={Login} />
+
+          <PrivateRoute exact path='/dashboard' component={Dashboard} />
 
           <Route component={Home} />
         </Switch>
