@@ -563,10 +563,17 @@ input[type=submit] {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 5vh 2vw;
 }
 
 .label-container {
+  padding: 5vh 2vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 30%;
   border-right: 1px solid #62afa4;
   font-size: 28.8px;
@@ -579,6 +586,7 @@ input[type=submit] {
 }
 
 .input-fields {
+  padding: 5vh 2vw;
   width: 70%
 }
 
@@ -587,7 +595,7 @@ input[type=submit] {
   margin-bottom: 2rem;
 }
 
-.input-fields input{
+.input-fields input, .input-fields select, .input-fields textarea{
   width: 100%;
   height: 5vh;
   border: 1px solid #999;
@@ -1094,6 +1102,170 @@ input[type=submit] {
 .footer .footer-contact-info .footer-contact-item{
   margin-bottom: 24px;
   margin-bottom: 1.5rem;
+}
+
+/* New Activity */
+
+.new-container {
+  margin: 0 8vw;
+}
+
+.new-activity-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: 1px solid #62afa4;
+  border-radius: .5vw
+}
+
+.new-activity-form select, .new-activity-form input{
+  width: 40%;
+}
+
+.new-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center
+}
+
+.new-section > label{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 32px;
+  padding-left: 2rem;
+  height: 128px;
+  height: 8rem;
+  width: 40%;
+  border-right: 1px solid #62afa4;
+}
+
+.new-section .input-field{
+  padding-left: 32px;
+  padding-left: 2rem;
+  width: 100%;
+}
+
+.new-section input[type='text'],
+  .new-section input[type='number'],
+  .new-section select{
+  height: 80px;
+  height: 5rem;
+  border: 1px solid #999;
+  border-radius: .5vw;
+  font-size: 25.6px;
+  font-size: 1.6rem;
+  background: transparent;
+  outline: none;
+}
+
+.new-section input[type='number']{
+  width: 20%;
+}
+
+.new-section textarea{
+  outline: none;
+  font-size: 25.6px;
+  font-size: 1.6rem;
+  width: 95%;
+  height: 120px;
+  height: 7.5rem;
+}
+
+.long-section {
+  height: 240px;
+  height: 15rem
+}
+
+.long-section label{
+  height: 100%;
+  border-right: 1px solid #62afa4;
+}
+
+.more-submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center
+}
+
+.more-submit textarea{
+  width: 95%;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.more-submit input[type=submit]{
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin: 16px 80px 0;
+  margin: 1rem 5rem 0;
+  width: 20%;
+  height: 64px;
+  height: 4rem;
+}
+
+.radio-select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.radio-request, .radio-offer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-size: contain;
+  line-height: 400%;
+  width: 5vw;
+  height: 5vw;
+  margin: 0 19.2px 16px;
+  margin: 0 1.2rem 1rem;
+  transition: all .3s ease;
+}
+
+.radio-option-offer, .radio-option-request {
+  display: none;
+}
+
+.radio-request {
+  background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NS44MyA1NSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmU7c3Ryb2tlOiM5OTk7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5vZmZmZi1pbmFjdGl2ZTwvdGl0bGU+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIyNy41IiBjeT0iMjcuNSIgcj0iMjciLz48bGluZSBjbGFzcz0iY2xzLTEiIHgxPSIyOC41IiB5MT0iMjkuMTciIHgyPSI3NS44MyIgeTI9IjI5LjE3Ii8+PHBvbHlsaW5lIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSIzOS44MyAxOS4xNyAyNy44MyAyOS4xNyA0MC41IDM3LjE3Ii8+PC9zdmc+) no-repeat center;
+}
+
+.radio-offer {
+  background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3Ni42OCA1NSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmU7c3Ryb2tlOiM5OTk7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5yZXF1ZXN0LWluYWN0aXZlPC90aXRsZT48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjI3LjUiIGN5PSIyNy41IiByPSIyNyIvPjxsaW5lIGNsYXNzPSJjbHMtMSIgeDE9Ijc1LjE3IiB5MT0iMjcuMTciIHgyPSIyNy44MyIgeTI9IjI3LjE3Ii8+PHBvbHlsaW5lIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSI2My44MyAzNy4xNyA3NS44MyAyNy4xNyA2My4xNyAxOS4xNyIvPjwvc3ZnPg==) no-repeat center;
+}
+
+.radio-option-request:checked + .radio-request {
+  background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3Mi4zMyA1OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmU7c3Ryb2tlOiM2ZmI3YWQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOjRweDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPlJlcXVlc3Q8L3RpdGxlPjxjaXJjbGUgY2xhc3M9ImNscy0xIiBjeD0iMjkiIGN5PSIyOSIgcj0iMjciLz48bGluZSBjbGFzcz0iY2xzLTEiIHgxPSIyNSIgeTE9IjI4LjY3IiB4Mj0iNzIuMzMiIHkyPSIyOC42NyIvPjxwb2x5bGluZSBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMzYuMzMgMzguNjcgMjQuMzMgMjguNjcgMzcgMjAuNjciLz48L3N2Zz4=) no-repeat center;
+}
+
+.radio-option-offer:checked + .radio-offer {
+  background: green;
+  background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MC43MyA1OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmU7c3Ryb2tlOiM2ZmI3YWQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOjRweDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPk9mZmVyPC90aXRsZT48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjI5IiBjeT0iMjkiIHI9IjI3Ii8+PGxpbmUgY2xhc3M9ImNscy0xIiB4MT0iNzYuNjciIHkxPSIyOC42NyIgeDI9IjI5LjMzIiB5Mj0iMjguNjciLz48cG9seWxpbmUgY2xhc3M9ImNscy0xIiBwb2ludHM9IjY1LjMzIDM4LjY3IDc3LjMzIDI4LjY3IDY0LjY3IDIwLjY3Ii8+PC9zdmc+) no-repeat center;
+
 }
 
 /* Google Styles */

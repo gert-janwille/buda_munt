@@ -9,6 +9,7 @@ import Home from './Home';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import Overzicht from './Overzicht';
+import NewActivity from './NewActivity';
 import Detail from './Detail';
 
 import PrivateRoute from '../components/privateroute';
@@ -27,6 +28,7 @@ const App = () => (
       <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/overzicht/:title/:_id' component={Detail} />
+          <PrivateRoute path='/overzicht/nieuw' component={NewActivity} />
           <Route path='/overzicht' component={Overzicht} />
           <Route path='/inschrijven' component={Home} />
           <Route path='/contact' component={Home} />

@@ -3,7 +3,7 @@ import {inject, observer} from 'mobx-react';
 // import {Link} from 'react-router-dom';
 import {bool} from 'prop-types';
 
-const Home = () => {
+const Dashboard = () => {
   return (
       <main className='home-container'>
 
@@ -12,7 +12,7 @@ const Home = () => {
   );
 };
 
-Home.propTypes = {
+Dashboard.propTypes = {
   isPopUpOpen: bool.isRequired
 };
 
@@ -21,5 +21,5 @@ export default inject(
     isPopUpOpen: activityStore.isPopUpOpen
   })
 )(
-  observer(Home)
+  observer(Dashboard)
 );

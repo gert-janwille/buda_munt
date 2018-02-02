@@ -17,7 +17,7 @@ const SearchBar = ({filterSearch}) => {
       </form>
 
       <div className='button'>
-        <Link className='lato-bol' to={`/`}>Plaats nieuw</Link>
+        <Link className='lato-bol' to={`/overzicht/nieuw`}>Plaats nieuw</Link>
       </div>
     </section>
   );

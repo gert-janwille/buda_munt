@@ -39,6 +39,7 @@ class Store {
 
   constructor() {
     console.error = function() {};
+    console.warn = function() {};
     this.init();
   }
 

@@ -77,7 +77,9 @@ module.exports = [
         payload: {
           type: Joi.string().min(1).max(1).required(),
           title: Joi.string().min(3).max(128).required(),
+          price: Joi.number().required(),
           description: Joi.string().min(3).required(),
+          categorie: Joi.string().required()
         }
 
       }
@@ -92,9 +94,9 @@ module.exports = [
 
       // Get data
       const {username} = token;
-      const {type, title, description} = req.payload;
+      const {type, title, description, price, categorie} = req.payload;
       // Bind data
-      const data = {username, type, title, description};
+      const data = {username, type, title, description, price, categorie};
 
       // Create new Activity
       const activity = new Activity(data);

@@ -22,6 +22,11 @@ const schema = new Schema({
     required: true
   },
 
+  categorie: {
+    type: String,
+    required: true
+  },
+
   comments: {
     type: Array,
     default: []
