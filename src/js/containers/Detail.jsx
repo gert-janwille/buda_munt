@@ -7,14 +7,14 @@ import {object, func, string, bool} from 'prop-types';
 import timeConverter from '../lib/timeConverter';
 import Reaction from '../components/detail/Reaction';
 
-const Detail = ({match, findOne, detailActivity, imgFile, hasAccess, newComment, setNewComment, currentUser, insertNewComment}) => {
+const Detail = ({match, findOne, detailActivity, imgFile, hasAccess, newComment, setNewComment, currentUser, insertNewComment, acceptOrDenyProposal}) => {
   const {_id, title} = match.params;
   findOne(_id, title);
-  const {username, price, created, type, description, comments} = detailActivity;
+  const {username, price, created, type, description, comments, doneBy} = detailActivity;
 
   const handleAddComment = e => {
     e.preventDefault();
-    setNewComment(true);
+    setNewComment(true, currentUser);
   };
 
   return (
@@ -23,7 +23,7 @@ const Detail = ({match, findOne, detailActivity, imgFile, hasAccess, newComment,
       <section className='breadcrumbs'>
         <p className='lato-bol green-color'><Link to={`/overzicht`} className='blue-link'>Overzicht</Link> / {title}</p>
         <div className='button'>
-          {currentUser ? <a href='#' onClick={handleAddComment} className='lato-bol'>Reageer</a> : ``}
+          {currentUser && isEmpty(doneBy) ? <a href='#' onClick={handleAddComment} className='lato-bol'>Reageer</a> : ``}
         </div>
       </section>
 
@@ -45,8 +45,8 @@ const Detail = ({match, findOne, detailActivity, imgFile, hasAccess, newComment,
 
       <section className='reactions'>
         <h2 className='heading3 lato-bol light-grey-color'>Reacties:</h2>
-        {newComment ? <Reaction articleID={_id} newComment {...currentUser} insertNewComment={insertNewComment} /> : ``}
-        {!isEmpty(comments) ? comments.map(comment => <Reaction key={comment._id} mayControl={hasAccess(username)} {...comment} />) : `Er zijn nog geen reacties op dit klusje.`}
+        {newComment ? <Reaction setNewComment={setNewComment} articleID={_id} newComment {...currentUser} currentUser={currentUser} insertNewComment={insertNewComment} /> : ``}
+        {!isEmpty(comments) ? comments.map(comment => <Reaction key={comment._id} doneBy={doneBy} articleID={_id} mayControl={hasAccess(username)} acceptOrDenyProposal={acceptOrDenyProposal} {...comment} />) : `Er zijn nog geen reacties op dit klusje.`}
       </section>
 
 
@@ -63,7 +63,8 @@ Detail.propTypes = {
   newComment: bool.isRequired,
   setNewComment: func.isRequired,
   currentUser: object.isRequired,
-  insertNewComment: func.isRequired
+  insertNewComment: func.isRequired,
+  acceptOrDenyProposal: func.isRequired
 };
 
 export default inject(
@@ -75,8 +76,9 @@ export default inject(
     hasAccess: userStore.hasAccess,
     newComment: activityStore.newComment,
     setNewComment: activityStore.setNewComment,
-    currentUser: activityStore.currentUser,
-    insertNewComment: activityStore.insertNewComment
+    insertNewComment: activityStore.insertNewComment,
+    acceptOrDenyProposal: activityStore.acceptOrDenyProposal,
+    currentUser: userStore.currentUser
   })
 )(
   observer(Detail)

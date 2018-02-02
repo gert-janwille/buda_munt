@@ -15,6 +15,16 @@ class Store {
     password: ``
   }
 
+  @observable currentUser = {e: `d`}
+
+  init = () => {
+    this.currentUser = content();
+  }
+
+  constructor() {
+    this.init();
+  }
+
   @action changeInput = (key, value) => {
     switch (key) {
     case `email`:
@@ -41,6 +51,8 @@ class Store {
       .then(({token}) => {
         if (token === undefined) throw new Error(`Something went wrong`);
         set(token);
+        this.currentUser = content();
+        console.log(this.currentUser);
       })
       .then(() => {
         this.email = ``;

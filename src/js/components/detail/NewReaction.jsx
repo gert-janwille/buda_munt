@@ -1,10 +1,10 @@
 import React from 'react';
-import {string, func} from 'prop-types';
+import {string, func, object} from 'prop-types';
 
-const Reaction = ({articleID, username, account, insertNewComment}) => {
+const Reaction = ({articleID, username, account, insertNewComment, currentUser}) => {
   const handleSubmitComment = e => {
     e.preventDefault();
-    insertNewComment(e, username, account, articleID);
+    insertNewComment(e, username, account, articleID, currentUser);
   };
 
   return (
@@ -19,7 +19,8 @@ Reaction.propTypes = {
   username: string.isRequired,
   account: string.isRequired,
   insertNewComment: func.isRequired,
-  articleID: string.isRequired
+  articleID: string.isRequired,
+  currentUser: object.isRequired
 };
 
 export default Reaction;

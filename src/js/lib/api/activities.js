@@ -19,7 +19,7 @@ export default {
 
   update: (data, action, id) => {
     const method = `PUT`;
-    const body = buildBody(data, [`comment`]);
+    const body = buildBody(data, [`comment`, `doneby`]);
     const headers = new Headers({
       'Content-Type': `application/json`,
       authorization: token.get()

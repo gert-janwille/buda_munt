@@ -2,7 +2,6 @@ import {observable, action} from 'mobx';
 import {isEmpty} from 'lodash';
 
 import serialize from '../lib/serialize';
-import {content} from '../lib/auth/token';
 
 import {activities} from '../../assets/data/activities.json';
 import activityAPI from '../lib/api/activities';
@@ -19,7 +18,6 @@ class Store {
   @observable chores = []
   @observable allChores = []
   @observable promo = {}
-  @observable currentUser = {}
 
   @observable detailActivity = {}
   @observable imgFile = `../../assets/img/default-profile.jpg`
@@ -37,8 +35,6 @@ class Store {
         this.allChores = this.chores;
       });
 
-    this.currentUser = content();
-
   }
 
   constructor() {
@@ -46,7 +42,7 @@ class Store {
     this.init();
   }
 
-  @action insertNewComment = (e, username, account, id) => {
+  @action insertNewComment = (e, username, account, id, currentUser) => {
     let data = serialize(e.currentTarget);
     data[`username`] = username;
     data[`account`] = account;
@@ -61,15 +57,35 @@ class Store {
 
     activityAPI.update({comment: String(JSON.stringify(data))}, `comment`, id)
       .then(a => {
-        this.setNewComment(false);
+        this.setNewComment(false, currentUser);
         a.comments = a.comments.sort((a, b) => new Date(b.date) - new Date(a.date));
         this.chores.map(c => (c._id === a._id) ? c.comments = a.comments : null);
       });
   }
 
-  @action setNewComment = bool => {
-    if (this.currentUser) this.newComment = bool;
+  @action setNewComment = (bool, user) => {
+    if (user) this.newComment = bool;
   };
+
+  @action acceptOrDenyProposal = (e, data) => {
+    const target = e.currentTarget.classList;
+
+    if (target.contains(`accept`)) {
+
+      activityAPI.update({doneby: String(JSON.stringify(data))}, `doneby`, data.id)
+        .then(a => {
+          a.comments = a.comments.sort((a, b) => new Date(b.date) - new Date(a.date));
+          this.chores.map(c => {
+            if (c._id === a._id) {
+              c[`doneBy`] = a.doneBy;
+              c.comments = a.comments;
+            }
+          });
+        });
+    } else {
+      console.log(`deny`);
+    }
+  }
 
   @action findOne = (_id, title) => {
     if (isEmpty(this.allChores)) return;
