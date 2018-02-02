@@ -2,11 +2,13 @@ import {observable, action} from 'mobx';
 import {isEmpty} from 'lodash';
 
 import serialize from '../lib/serialize';
+import {content} from '../lib/auth/token';
 
 import {activities} from '../../assets/data/activities.json';
 import activityAPI from '../lib/api/activities';
 
 class Store {
+  @observable newComment = false
 
   @observable activities = activities;
   @observable activityLimit = activities.length - 1;
@@ -17,6 +19,7 @@ class Store {
   @observable chores = []
   @observable allChores = []
   @observable promo = {}
+  @observable currentUser = {}
 
   @observable detailActivity = {}
   @observable imgFile = `../../assets/img/default-profile.jpg`
@@ -24,18 +27,49 @@ class Store {
   init = () => {
     activityAPI.read()
       .then(chores => {
-        chores.map(c => this.chores.push(c));
+        chores.map(c => {
+          c.comments.sort((a, b) => new Date(b.date) - new Date(a.date));
+          this.chores.push(c);
+        });
         this.promo = chores[Math.floor(Math.random() * chores.length)];
       })
       .then(() => {
         this.allChores = this.chores;
       });
+
+    this.currentUser = content();
+
   }
 
   constructor() {
     console.error = function() {};
     this.init();
   }
+
+  @action insertNewComment = (e, username, account, id) => {
+    let data = serialize(e.currentTarget);
+    data[`username`] = username;
+    data[`account`] = account;
+    data[`date`] = Date.now();
+
+    data = {
+      description: data.description,
+      username: data.username,
+      account: data.account,
+      date: data.date,
+    };
+
+    activityAPI.update({comment: String(JSON.stringify(data))}, `comment`, id)
+      .then(a => {
+        this.setNewComment(false);
+        a.comments = a.comments.sort((a, b) => new Date(b.date) - new Date(a.date));
+        this.chores.map(c => (c._id === a._id) ? c.comments = a.comments : null);
+      });
+  }
+
+  @action setNewComment = bool => {
+    if (this.currentUser) this.newComment = bool;
+  };
 
   @action findOne = (_id, title) => {
     if (isEmpty(this.allChores)) return;

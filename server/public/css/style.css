@@ -962,6 +962,19 @@ input[type=submit] {
   width: 100%;
 }
 
+.detail-more-info form{
+  width: 100%;
+}
+
+.detail-more-info textarea{
+  width: 100%;
+  height: 160px;
+  height: 10rem;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
 .detail-more-info img{
   width: 15%;
   margin-right: 128px;

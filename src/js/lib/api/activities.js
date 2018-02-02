@@ -17,15 +17,15 @@ export default {
       .catch(er => console.error(er));
   },
 
-  update: (data, id) => {
+  update: (data, action, id) => {
     const method = `PUT`;
-    const body = buildBody(data, [`stock`, `price`, `rating`, `badge`, `isActive`]);
+    const body = buildBody(data, [`comment`]);
     const headers = new Headers({
       'Content-Type': `application/json`,
       authorization: token.get()
     });
 
-    return fetch(`${url}/${id}`, {body, method, headers, mode: `cors`})
+    return fetch(`${url}/${action}?id=${id}`, {body, method, headers, mode: `cors`})
       .then(r => r.json())
       .catch(er => console.error(er));
   },

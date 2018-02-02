@@ -73,6 +73,7 @@ class Store {
     return error;
   }
 
+
 }
 
 const store = new Store();

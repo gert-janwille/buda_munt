@@ -2,20 +2,20 @@ import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {isEmpty} from 'lodash';
 import {Link} from 'react-router-dom';
-import {object, func, string} from 'prop-types';
+import {object, func, string, bool} from 'prop-types';
 
 import timeConverter from '../lib/timeConverter';
 import Reaction from '../components/detail/Reaction';
 
-const Detail = ({match, findOne, detailActivity, imgFile, hasAccess}) => {
+const Detail = ({match, findOne, detailActivity, imgFile, hasAccess, newComment, setNewComment, currentUser, insertNewComment}) => {
   const {_id, title} = match.params;
   findOne(_id, title);
   const {username, price, created, type, description, comments} = detailActivity;
 
-  // if (content()) {
-  //   const {username: tUser} = content();
-  //   const hasAccess =
-  // }
+  const handleAddComment = e => {
+    e.preventDefault();
+    setNewComment(true);
+  };
 
   return (
       <main className='detail-container'>
@@ -23,7 +23,7 @@ const Detail = ({match, findOne, detailActivity, imgFile, hasAccess}) => {
       <section className='breadcrumbs'>
         <p className='lato-bol green-color'><Link to={`/overzicht`} className='blue-link'>Overzicht</Link> / {title}</p>
         <div className='button'>
-          <a href='#' className='lato-bol'>Reageer</a>
+          {currentUser ? <a href='#' onClick={handleAddComment} className='lato-bol'>Reageer</a> : ``}
         </div>
       </section>
 
@@ -45,6 +45,7 @@ const Detail = ({match, findOne, detailActivity, imgFile, hasAccess}) => {
 
       <section className='reactions'>
         <h2 className='heading3 lato-bol light-grey-color'>Reacties:</h2>
+        {newComment ? <Reaction articleID={_id} newComment {...currentUser} insertNewComment={insertNewComment} /> : ``}
         {!isEmpty(comments) ? comments.map(comment => <Reaction key={comment._id} mayControl={hasAccess(username)} {...comment} />) : `Er zijn nog geen reacties op dit klusje.`}
       </section>
 
@@ -58,7 +59,11 @@ Detail.propTypes = {
   findOne: func.isRequired,
   detailActivity: object.isRequired,
   imgFile: string.isRequired,
-  hasAccess: func.isRequired
+  hasAccess: func.isRequired,
+  newComment: bool.isRequired,
+  setNewComment: func.isRequired,
+  currentUser: object.isRequired,
+  insertNewComment: func.isRequired
 };
 
 export default inject(
@@ -67,7 +72,11 @@ export default inject(
     findOne: activityStore.findOne,
     detailActivity: activityStore.detailActivity,
     imgFile: activityStore.imgFile,
-    hasAccess: userStore.hasAccess
+    hasAccess: userStore.hasAccess,
+    newComment: activityStore.newComment,
+    setNewComment: activityStore.setNewComment,
+    currentUser: activityStore.currentUser,
+    insertNewComment: activityStore.insertNewComment
   })
 )(
   observer(Detail)

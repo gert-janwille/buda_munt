@@ -1,5 +1,8 @@
 export default created => {
-  const a = new Date(Date.parse(created));
+  if (typeof (created) === `string`) {
+    created = Date.parse(created);
+  }
+  const a = new Date(created);
 
   const months = [`01`, `02`, `03`, `04`, `05`, `06`, `07`, `08`, `09`, `10`, `11`, `12`];
 
