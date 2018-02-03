@@ -22,6 +22,17 @@ class Store {
   @observable detailActivity = {}
   @observable imgFile = `../../assets/img/default-profile.jpg`
 
+
+  @observable errors = {}
+
+  @observable data = {
+    type: ``,
+    categorie: ``,
+    title: ``,
+    price: ``,
+    description: ``
+  }
+
   init = () => {
     activityAPI.read()
       .then(chores => {
@@ -41,6 +52,52 @@ class Store {
     console.error = function() {};
     console.warn = function() {};
     this.init();
+  }
+
+  @action changeInput = (key, value) => {
+    switch (key) {
+    case `type`:
+      this.data.type = value;
+      break;
+    case `categorie`:
+      this.data.categorie = value;
+      break;
+    case `title`:
+      this.data.title = value;
+      break;
+    case `price`:
+      this.data.price = value;
+      break;
+    case `description`:
+      this.data.description = value;
+      break;
+    }
+  }
+
+  @action insertActivity = (e, history) => {
+    const formData = serialize(e.currentTarget);
+
+    this.data.type = formData.O ? `O` : `R`;
+
+    const error = this.validate(this.data);
+    if (!isEmpty(error)) return this.errors = error;
+    this.error = {};
+
+    activityAPI.insert(this.data)
+      .then(a => {
+        this.chores.splice(0, 0, a);
+        this.allChores = this.chores;
+      }).then(() => {
+        this.data.categorie = ``;
+        this.data.title = ``;
+        this.data.price = ``;
+        this.data.description = ``;
+
+        history.push(`/overzicht`);
+      })
+      .catch(() => {
+        this.errors.description = `Er liep iets verkeerd.`;
+      });
   }
 
   @action insertNewComment = (e, username, account, id, currentUser) => {
@@ -157,6 +214,15 @@ class Store {
         str.push(`${encodeURIComponent(p)  }=${encodeURIComponent(obj[p])}`);
       }
     return str.join(`&`);
+  }
+
+  @action validate = data => {
+    const errorStrings = [`Oeps, je gaf geen`, `Vergeet niet je`];
+    const error = {};
+    for (const key in data) {
+      if (data[key] === `` || data[key] === ` `) error[key] = `${errorStrings[Math.floor(Math.random() * errorStrings.length)]} ${key}`;
+    }
+    return error;
   }
 
 }

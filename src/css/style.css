@@ -782,37 +782,6 @@ input[type=submit] {
 
 }
 
-/* Footer */
-
-.footer {
-  margin-top: 2rem;
-  padding: 2vh 8vw;
-  height: 20vh;
-  font-size: 1.5rem;
-
-  display: flex;
-  justify-content: space-between;
-
-  border-top: 1px solid #e5e5e5;
-
-  & .footer-links {
-    display: flex;
-
-    & .footer-item {
-      margin: 0 3vw 0 0;
-    }
-  }
-
-  & .footer-contact-info {
-    display: flex;
-    flex-direction: column;
-
-    & .footer-contact-item {
-      margin-bottom: 1.5rem;
-    }
-  }
-}
-
 /* New Activity */
 
 .new-container {
@@ -872,11 +841,18 @@ input[type=submit] {
 }
 
 .long-section {
-  height: 15rem;
+  height: 25rem;
 
   & label {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 5rem;
     height: 100%;
     border-right: 1px solid var(--green);
+  }
+
+  & textarea {
+    height: 15rem;
   }
 }
 
@@ -933,7 +909,78 @@ input[type=submit] {
 .radio-option-offer:checked + .radio-offer {
   background: green;
   background: url(../assets/svg/offer.svg) no-repeat center;
+}
 
+/* Registration */
+
+.registration-container {
+  padding: 0 8vw;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.registration-info {
+  margin-top: 2rem;
+  width: 30vw;
+  text-align: center;
+  line-height: 180%;
+}
+
+.register-select-type {
+  width: 60%;
+  margin: 5rem;
+  display: flex;
+  justify-content: space-between;
+
+  & a {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    line-height: 160%;
+    margin: 2rem;
+  }
+
+  & .type-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 2rem;
+  padding: 2vh 8vw;
+  height: 20vh;
+  font-size: 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  border-top: 1px solid #e5e5e5;
+
+  & .footer-links {
+    display: flex;
+
+    & .footer-item {
+      margin: 0 3vw 0 0;
+    }
+  }
+
+  & .footer-contact-info {
+    display: flex;
+    flex-direction: column;
+
+    & .footer-contact-item {
+      margin-bottom: 1.5rem;
+    }
+  }
 }
 
 /* Google Styles */

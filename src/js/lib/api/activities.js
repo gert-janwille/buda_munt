@@ -31,8 +31,7 @@ export default {
   },
 
   insert: data => {
-
-    const body = buildBody(data, [`title`, `description`, `type`, `price`, `badge`, `rating`, `collect`, `width`, `height`, `stock`, `isActive`]);
+    const body = buildBody(data, [`type`, `description`, `title`, `price`, `categorie`]);
     const method = `POST`;
     const headers = new Headers({
       'Content-Type': `application/json`,

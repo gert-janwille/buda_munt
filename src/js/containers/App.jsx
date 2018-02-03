@@ -12,6 +12,9 @@ import Overzicht from './Overzicht';
 import NewActivity from './NewActivity';
 import Detail from './Detail';
 
+import Registration from './registration';
+import StepOne from './registration/StepOne';
+
 import PrivateRoute from '../components/privateroute';
 
 import Navigation from '../components/navigation';
@@ -27,10 +30,14 @@ const App = () => (
     <section className='app-holder'>
       <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/overzicht/:title/:_id' component={Detail} />
+
           <PrivateRoute path='/overzicht/nieuw' component={NewActivity} />
+          <Route path='/overzicht/:title/:_id' component={Detail} />
           <Route path='/overzicht' component={Overzicht} />
-          <Route path='/inschrijven' component={Home} />
+
+          <Route path='/inschrijven/step-1' component={StepOne} />
+          <Route path='/inschrijven' component={Registration} />
+
           <Route path='/contact' component={Home} />
           <Route path='/login' component={Login} />
 

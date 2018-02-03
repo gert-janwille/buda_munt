@@ -28,7 +28,7 @@ export default form => {
         break;
       case `checkbox`:
       case `radio`:
-        q[form.elements[i].name] = form.elements[i].checked;
+        q[form.elements[i].id] = form.elements[i].checked;
         break;
       }
       break;

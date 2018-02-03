@@ -1057,53 +1057,6 @@ input[type=submit] {
           transform: rotate(90deg);
 }
 
-/* Footer */
-
-.footer {
-  margin-top: 32px;
-  margin-top: 2rem;
-  padding: 2vh 8vw;
-  height: 20vh;
-  font-size: 24px;
-  font-size: 1.5rem;
-
-  display: -webkit-box;
-
-  display: -ms-flexbox;
-
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-
-  border-top: 1px solid #e5e5e5
-}
-
-.footer .footer-links{
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.footer .footer-links .footer-item{
-  margin: 0 3vw 0 0;
-}
-
-.footer .footer-contact-info{
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.footer .footer-contact-info .footer-contact-item{
-  margin-bottom: 24px;
-  margin-bottom: 1.5rem;
-}
-
 /* New Activity */
 
 .new-container {
@@ -1183,13 +1136,26 @@ input[type=submit] {
 }
 
 .long-section {
-  height: 240px;
-  height: 15rem
+  height: 400px;
+  height: 25rem
 }
 
 .long-section label{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-top: 80px;
+  padding-top: 5rem;
   height: 100%;
   border-right: 1px solid #62afa4;
+}
+
+.long-section textarea{
+  height: 240px;
+  height: 15rem;
 }
 
 .more-submit {
@@ -1265,7 +1231,118 @@ input[type=submit] {
 .radio-option-offer:checked + .radio-offer {
   background: green;
   background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MC43MyA1OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmU7c3Ryb2tlOiM2ZmI3YWQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOjRweDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPk9mZmVyPC90aXRsZT48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjI5IiBjeT0iMjkiIHI9IjI3Ii8+PGxpbmUgY2xhc3M9ImNscy0xIiB4MT0iNzYuNjciIHkxPSIyOC42NyIgeDI9IjI5LjMzIiB5Mj0iMjguNjciLz48cG9seWxpbmUgY2xhc3M9ImNscy0xIiBwb2ludHM9IjY1LjMzIDM4LjY3IDc3LjMzIDI4LjY3IDY0LjY3IDIwLjY3Ii8+PC9zdmc+) no-repeat center;
+}
 
+/* Registration */
+
+.registration-container {
+  padding: 0 8vw;
+}
+
+.center-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 70vh;
+}
+
+.registration-info {
+  margin-top: 32px;
+  margin-top: 2rem;
+  width: 30vw;
+  text-align: center;
+  line-height: 180%;
+}
+
+.register-select-type {
+  width: 60%;
+  margin: 80px;
+  margin: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between
+}
+
+.register-select-type a{
+  font-size: 32px;
+  font-size: 2rem;
+  padding: 16px 32px;
+  padding: 1rem 2rem;
+  line-height: 160%;
+  margin: 32px;
+  margin: 2rem;
+}
+
+.register-select-type .type-option{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 32px;
+  margin-top: 2rem;
+  padding: 2vh 8vw;
+  height: 20vh;
+  font-size: 24px;
+  font-size: 1.5rem;
+
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+
+  border-top: 1px solid #e5e5e5
+}
+
+.footer .footer-links{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer .footer-links .footer-item{
+  margin: 0 3vw 0 0;
+}
+
+.footer .footer-contact-info{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.footer .footer-contact-info .footer-contact-item{
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 }
 
 /* Google Styles */

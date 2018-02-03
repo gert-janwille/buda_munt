@@ -15,6 +15,7 @@ const FilterBar = ({filterSearch}) => {
       <article className='overzicht-filter-options'>
         <select name='categorie' className='overzicht-select'>
           <option value=''>Categorie</option>
+          <option value='zorg'>Zorg</option>
         </select>
 
         <div className='overzicht-radio-select'>
