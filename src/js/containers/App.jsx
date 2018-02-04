@@ -1,8 +1,5 @@
 import React from 'react';
-import {string} from 'prop-types';
 import {Route, Switch} from 'react-router-dom';
-
-import {inject, observer} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
 import Home from './Home';
@@ -11,6 +8,7 @@ import Dashboard from './Dashboard';
 import Overzicht from './Overzicht';
 import NewActivity from './NewActivity';
 import Detail from './Detail';
+import Contact from './Contact';
 
 import Registration from './registration';
 import StepOne from './registration/StepOne';
@@ -44,7 +42,7 @@ const App = () => (
           <Route path='/inschrijven/step-4' component={StepFour} />
           <Route path='/inschrijven' component={Registration} />
 
-          <Route path='/contact' component={Home} />
+          <Route path='/contact' component={Contact} />
           <Route path='/login' component={Login} />
 
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
@@ -60,13 +58,7 @@ const App = () => (
 );
 
 App.propTypes = {
-  name: string.isRequired
+
 };
 
-export default inject(
-  ({store}) => ({
-    name: store.name
-  })
-)(
-  observer(App)
-);
+export default App;

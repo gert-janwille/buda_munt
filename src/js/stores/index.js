@@ -1,10 +1,10 @@
-import store from './store';
+import contactStore from './contactStore';
 import activityStore from './activityStore';
 import dealerStore from './dealerStore';
 import registrationStore from './registrationStore';
 
 export default {
-  store,
+  contactStore,
   activityStore,
   dealerStore,
   registrationStore

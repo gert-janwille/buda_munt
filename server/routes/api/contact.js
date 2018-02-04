@@ -21,7 +21,6 @@ module.exports = [
           name: Joi.string().required(),
           firstName: Joi.string().required(),
           email: Joi.string().email().required(),
-          phone: Joi.string().required(),
           question: Joi.string().required()
         }
       }
@@ -29,8 +28,8 @@ module.exports = [
     },
 
     handler: (req, res) => {
-      const {name, firstName, email, phone, question} = req.payload;
-      const data = {name, firstName, email, phone, question};
+      const {name, firstName, email, question} = req.payload;
+      const data = {name, firstName, email, question};
        // Prepare data for email
       data.subject = `${firstName} ${name} has contacted you`;
       data.mailtype = `contact`;

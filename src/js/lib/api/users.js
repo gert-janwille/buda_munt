@@ -11,7 +11,7 @@ export default {
     const headers = new Headers({
       'Content-Type': `application/json`
     });
-    console.log(body);
+
     return fetch(`${url}`, {body, method, headers, mode: `cors`})
       .then(r => r.json())
       .catch(er => console.error(er));

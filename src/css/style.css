@@ -1070,6 +1070,24 @@ textarea.textarea-long {
   }
 }
 
+/* Contact */
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url(../assets/img/calling.png) no-repeat bottom left;
+
+  & p {
+    width: 35vw;
+  }
+}
+
+.contact-form {
+  width: 60vw;
+}
+
 /* Footer */
 
 .footer {
