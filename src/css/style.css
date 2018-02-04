@@ -128,6 +128,35 @@ p {
   border-bottom: 1px solid var(--blue);
 }
 
+/* stylelint-disable */
+
+input[type=submit].blue-button-link,
+.green-button-link,
+.blue-button-link {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: .5vw;
+  padding: .2rem 2rem;
+  white-space: nowrap;
+}
+
+/* stylelint-enable */
+
+.green-button-link {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* stylelint-disable */
+
+.blue-button-link,
+input[type=submit].blue-button-link {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+/* stylelint-enable */
+
 input[type=submit] {
   color: var(--blue);
   border-color: var(--blue);
@@ -437,6 +466,17 @@ input[type=submit] {
   }
 }
 
+.label-container-small {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--green);
+  font-size: 1.8rem;
+
+  & label {
+    margin: 1rem 0 3.5rem;
+  }
+}
+
 .input-fields {
   padding: 5vh 2vw;
   width: 70%;
@@ -472,6 +512,18 @@ input[type=submit] {
     font-size: 1.5rem;
     margin-top: 2rem;
   }
+}
+
+/* stylelint-disable */
+
+textarea.textarea-long {
+  height: 25vh;
+}
+
+/* stylelint-enable */
+
+.no-padding {
+  padding: 0;
 }
 
 /* Overzicht */
@@ -915,6 +967,14 @@ input[type=submit] {
 
 .registration-container {
   padding: 0 8vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fixed-width {
+  width: 80vw;
 }
 
 .center-container {
@@ -949,6 +1009,64 @@ input[type=submit] {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.registration-form {
+  display: flex;
+  border: 1px solid var(--green);
+  border-radius: .5vw;
+  margin-top: 2rem;
+
+  & section {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.large-container {
+  width: 80vw;
+}
+
+.step-title {
+  width: 85%;
+}
+
+.input-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-text {
+  width: 100%;
+  flex-grow: 1;
+  margin-right: 5rem;
+}
+
+.do-next-bar {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+
+  & .line {
+    width: 100%;
+    height: 1px;
+    background: #e5e5e5;
+  }
+}
+
+.avatar {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & img {
+    margin-bottom: 1rem;
+  }
+
+  & input[type=file] {
+    display: none;
   }
 }
 

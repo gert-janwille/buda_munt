@@ -49,7 +49,13 @@ module.exports = [
           scope: Joi.string().min(3),
           file: Joi.any(),
           dealer: Joi.string(),
-          description: Joi.string()
+          description: Joi.string(),
+          name: Joi.string().required(),
+          firstName: Joi.string().required(),
+          street: Joi.string().required(),
+          houseNumber: Joi.string().required(),
+          bus: Joi.string(),
+          zip: Joi.string().required(),
         }
 
       }
@@ -58,7 +64,9 @@ module.exports = [
 
     handler: (req, res) => {
 
-      let fields = [`username`, `email`, `phone`, `password`, `pin`, `file`, `dealer`, `description`];
+      let fields = [`username`, `email`, `phone`, `password`, `pin`,
+        `file`, `dealer`, `description`, `name`, `firstName`, `street`,
+        `houseNumber`, `bus`, `zip`];
 
       if (req.payload.scope === Scopes.ADMIN) {
         fields = [...fields, `isActive`, `scope`];

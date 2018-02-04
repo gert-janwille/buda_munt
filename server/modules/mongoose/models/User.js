@@ -10,6 +10,16 @@ const schema = new Schema({
     unique: true
   },
 
+  name: {
+    type: String,
+    required: true
+  },
+
+  firstName: {
+    type: String,
+    required: true
+  },
+
   password: {
     type: String,
     required: true,
@@ -38,6 +48,37 @@ const schema = new Schema({
     type: String,
     required: true,
     unique: true
+  },
+
+  street: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
+  houseNumber: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
+  bus: {
+    type: String,
+    unique: true
+  },
+
+  zip: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
+  dealer: {
+    type: String
+  },
+
+  description: {
+    type: String
   },
 
   scope: {

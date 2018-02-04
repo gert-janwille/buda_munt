@@ -14,6 +14,9 @@ import Detail from './Detail';
 
 import Registration from './registration';
 import StepOne from './registration/StepOne';
+import StepTwo from './registration/StepTwo';
+import StepThree from './registration/StepThree';
+import StepFour from './registration/StepFour';
 
 import PrivateRoute from '../components/privateroute';
 
@@ -36,6 +39,9 @@ const App = () => (
           <Route path='/overzicht' component={Overzicht} />
 
           <Route path='/inschrijven/step-1' component={StepOne} />
+          <Route path='/inschrijven/step-2' component={StepTwo} />
+          <Route path='/inschrijven/step-3' component={StepThree} />
+          <Route path='/inschrijven/step-4' component={StepFour} />
           <Route path='/inschrijven' component={Registration} />
 
           <Route path='/contact' component={Home} />
