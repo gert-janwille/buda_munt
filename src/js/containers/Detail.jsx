@@ -68,17 +68,17 @@ Detail.propTypes = {
 };
 
 export default inject(
-  ({activityStore, userStore}) => ({
+  ({activityStore, registrationStore}) => ({
     allChores: activityStore.allChores,
     findOne: activityStore.findOne,
     detailActivity: activityStore.detailActivity,
     imgFile: activityStore.imgFile,
-    hasAccess: userStore.hasAccess,
+    hasAccess: registrationStore.hasAccess,
     newComment: activityStore.newComment,
     setNewComment: activityStore.setNewComment,
     insertNewComment: activityStore.insertNewComment,
     acceptOrDenyProposal: activityStore.acceptOrDenyProposal,
-    currentUser: userStore.currentUser
+    currentUser: registrationStore.currentUser
   })
 )(
   observer(Detail)

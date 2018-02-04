@@ -1,11 +1,11 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {Link} from 'react-router-dom';
-import {string, func, object} from 'prop-types';
+import {func, object} from 'prop-types';
 
 
-const Login = ({email, changeInput, login, errors, history}) => {
-  const handleChangeInput = e => changeInput(e.currentTarget.type, e.currentTarget.value);
+const Login = ({data, changeInput, login, errors, history}) => {
+  const handleChangeInput = e => changeInput(e);
   const handleSubmitLogin = e => {
     login(e)
       .then(c => c === 200 ? history.push(`/dashboard`) : ``);
@@ -24,7 +24,7 @@ const Login = ({email, changeInput, login, errors, history}) => {
 
         <section className='input-fields'>
           <div className='input-field'>
-            <input className='grey-color' name='email' id='email' onChange={handleChangeInput} value={email} type='email' placeholder='example@budamunt.be' />
+            <input className='grey-color' name='email' id='email' onChange={handleChangeInput} value={data.email} type='email' placeholder='example@budamunt.be' />
             <p className='error'>{errors.email}</p>
           </div>
 
@@ -35,7 +35,7 @@ const Login = ({email, changeInput, login, errors, history}) => {
 
           <input className='grey-color' type='submit' value='Login' />
 
-          <p className='lato-reg info-register'>Heeft u nog geen account? <Link to={`/`} className='blue-link'>Registreer hier!</Link></p>
+          <p className='lato-reg info-register'>Heeft u nog geen account? <Link to={`/inschrijven`} className='blue-link'>Registreer hier!</Link></p>
         </section>
 
       </form>
@@ -44,7 +44,7 @@ const Login = ({email, changeInput, login, errors, history}) => {
 };
 
 Login.propTypes = {
-  email: string.isRequired,
+  data: object.isRequired,
   changeInput: func.isRequired,
   login: func.isRequired,
   errors: object.isRequired,
@@ -52,11 +52,11 @@ Login.propTypes = {
 };
 
 export default inject(
-  ({userStore}) => ({
-    email: userStore.email,
-    changeInput: userStore.changeInput,
-    login: userStore.login,
-    errors: userStore.errors
+  ({registrationStore}) => ({
+    data: registrationStore.data,
+    changeInput: registrationStore.changeInput,
+    login: registrationStore.login,
+    errors: registrationStore.errors
   })
 )(
   observer(Login)

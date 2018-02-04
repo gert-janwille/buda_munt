@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {func, string} from 'prop-types';
+import {isEmpty} from 'lodash';
+import {func, string, object} from 'prop-types';
 
-const PinForm = ({handleChangeInput, handleSubmitForm, subscriptionType}) => {
+const PinForm = ({handleChangeInput, handleSubmitForm, subscriptionType, errors}) => {
 
   return (
     <form method='POST' onSubmit={handleSubmitForm} className='registration-form large-container'>
@@ -19,12 +20,12 @@ const PinForm = ({handleChangeInput, handleSubmitForm, subscriptionType}) => {
 
             <div className='input-field'>
               <input className='grey-color' name='pin' id='pin' type='password' inputMode='numeric' maxLength='4' size='4' onChange={handleChangeInput} />
-              <p className='error'></p>
+              <p className='error'>{!isEmpty(errors) ? errors.pin : null}</p>
             </div>
 
             <div className='input-field'>
-              <input className='grey-color' name='pin-repeat' id='pin-repeat' type='password' inputMode='numeric' maxLength='4' size='4' onChange={handleChangeInput} />
-              <p className='error'></p>
+              <input className='grey-color' name='pinRepeat' id='pin-repeat' type='password' inputMode='numeric' maxLength='4' size='4' onChange={handleChangeInput} />
+              <p className='error'>{!isEmpty(errors) ? errors.pinRepeat : null}</p>
             </div>
 
           </div>
@@ -46,7 +47,8 @@ const PinForm = ({handleChangeInput, handleSubmitForm, subscriptionType}) => {
 PinForm.propTypes = {
   handleChangeInput: func.isRequired,
   handleSubmitForm: func.isRequired,
-  subscriptionType: string.isRequired
+  subscriptionType: string.isRequired,
+  errors: object.isRequired
 };
 
 export default PinForm;

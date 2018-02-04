@@ -5,7 +5,7 @@ import {string, object, func} from 'prop-types';
 
 import PinForm from '../../components/registration/PinForm';
 
-const StepFour = ({history, subscriptionType, changeInput, submitForm, data}) => {
+const StepFour = ({history, subscriptionType, changeInput, submitForm, data, errors}) => {
   if (subscriptionType === ``) history.push(`/inschrijven`);
 
   const handleChangeInput = e => {
@@ -15,13 +15,13 @@ const StepFour = ({history, subscriptionType, changeInput, submitForm, data}) =>
 
   const handleSubmitForm = e => {
     e.preventDefault();
-    submitForm(e);
+    submitForm(e, history);
   };
 
   return (
     <main className='registration-container'>
       <h2 className='lato-bol green-color step-title heading3'>Ik ben een {subscriptionType.includes(`bewoner`) ? `bewoner van het Buda-eiland` : `handelaar of artiest`}. Stap 4.</h2>
-      <PinForm handleChangeInput={handleChangeInput} handleSubmitForm={handleSubmitForm} data={data} subscriptionType={subscriptionType} />
+      <PinForm handleChangeInput={handleChangeInput} handleSubmitForm={handleSubmitForm} data={data} subscriptionType={subscriptionType} errors={errors} />
     </main>
   );
 };
@@ -31,7 +31,8 @@ StepFour.propTypes = {
   history: object.isRequired,
   changeInput: func.isRequired,
   submitForm: func.isRequired,
-  data: object.isRequired
+  data: object.isRequired,
+  errors: object.isRequired
 };
 
 export default inject(
@@ -39,7 +40,8 @@ export default inject(
     subscriptionType: registrationStore.subscriptionType,
     changeInput: registrationStore.changeInput,
     submitForm: registrationStore.submitForm,
-    data: registrationStore.data
+    data: registrationStore.data,
+    errors: registrationStore.errors
   })
 )(
   observer(StepFour)

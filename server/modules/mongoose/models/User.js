@@ -52,25 +52,21 @@ const schema = new Schema({
 
   street: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
 
   houseNumber: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
 
   bus: {
-    type: String,
-    unique: true
+    type: String
   },
 
   zip: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
 
   dealer: {

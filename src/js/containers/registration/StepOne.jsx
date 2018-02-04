@@ -1,6 +1,5 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
-// import {Link} from 'react-router-dom';
 import {string, object, func} from 'prop-types';
 
 import UserForm from '../../components/registration/UserForm';
@@ -21,7 +20,6 @@ const StepOne = ({history, subscriptionType, changeInput}) => {
       {subscriptionType.includes(`bewoner`) ?
         <UserForm handleChangeInput={handleChangeInput} subscriptionType={subscriptionType} history={history} /> :
         <StoreForm handleChangeInput={handleChangeInput} subscriptionType={subscriptionType} history={history} />}
-
     </main>
   );
 };
