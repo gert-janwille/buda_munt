@@ -15,7 +15,7 @@ const Navigation = () => (
 
     <ul className='nav-list nav-split-right'>
       <li className='item'><a className='grey-color' href='tel:03 828 47 73'>03 828 47 73</a></li>
-      <li className='button'><Link to={(!token.isValid() && !token.content()) ? `/login` : `/dashboard`}>{(!token.isValid() && !token.content()) ? `login` : `dashboard`}</Link></li>
+      <li className='button'><Link to={(!token.isValid() && !token.content()) ? `/login` : `/dashboard`}>{(!token.isValid() && !token.content()) ? `Login` : `Profiel`}</Link></li>
     </ul>
 
   </nav>

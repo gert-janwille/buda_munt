@@ -4,6 +4,7 @@ import DevTools from 'mobx-react-devtools';
 
 import Home from './Home';
 import Login from './Login';
+import Transacties from './Transacties';
 import Dashboard from './Dashboard';
 import Overzicht from './Overzicht';
 import NewActivity from './NewActivity';
@@ -45,6 +46,7 @@ const App = () => (
           <Route path='/contact' component={Contact} />
           <Route path='/login' component={Login} />
 
+          <PrivateRoute exact path='/dashboard/transacties' component={Transacties} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
 
           <Route component={Home} />

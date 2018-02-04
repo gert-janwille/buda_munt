@@ -48,7 +48,6 @@ module.exports = [
           {isActive}
         ]
       }).then(user => {
-        console.log(user);
         if (!user || user === null) {
           return res(
             Boom.badRequest(`user/password combination incorrect`)

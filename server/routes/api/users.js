@@ -1,10 +1,11 @@
 const fs = require(`fs`);
+const jwt = require(`jsonwebtoken`);
 const QRCode = require(`qrcode`);
 const {User} = require(`mongoose`).models;
 const {Account} = require(`mongoose`).models;
 const {Dealer} = require(`mongoose`).models;
 
-const {pick, omit} = require(`lodash`);
+const {pick, omit, isEmpty} = require(`lodash`);
 
 const Scopes = require(`../../modules/mongoose/const/Scopes`);
 const {SECRET: secret} = process.env;
@@ -16,6 +17,43 @@ const mail = require(`../../lib/mail`);
 const base = `/api`;
 
 module.exports = [
+  {
+
+    method: `GET`,
+    path: `${base}/users`,
+
+    config: {
+
+      validate: {
+
+        options: {
+          abortEarly: false,
+          allowUnknown: true
+        },
+        query: {
+          email: Joi.string()
+        }
+      }
+
+    },
+
+    handler: (req, res) => {
+      const {authorization} = req.headers;
+      const token = jwt.decode(authorization);
+      if (!token) return res(Boom.badRequest(`No authorization header`));
+
+      const {email} = req.query;
+
+      User.findOne({email})
+        .then(user => {
+          if (token.email !== email) return res(Boom.unauthorized(`You're unauthorized to get this user`));
+          getAccount(user, res);
+        })
+        .catch(() => {
+          return res(Boom.badRequest(`error while authenticating user`));
+        });
+    }
+  },
 
   {
 
@@ -162,4 +200,17 @@ const generateAccount = data => {
   }
   acc += `-${u}${e}`;
   return acc;
+};
+
+const getAccount = (user, res) => {
+  const {account} = user;
+  Account.findOne({account})
+    .then(account => {
+      if (isEmpty(account)) return res(Boom.notFound());
+      account = omit(account.toJSON(), [`__v`, `_id`, `pin`, `modified`, `created`, `isActive`]);
+      return res({user, account});
+    })
+    .catch(() => {
+      return res(Boom.badRequest(`error while authenticating user`));
+    });
 };
