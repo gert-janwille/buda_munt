@@ -1,4 +1,5 @@
 import {observable, action} from 'mobx';
+import SocketIOClient from 'socket.io-client';
 // import {isEmpty} from 'lodash';
 
 import {get, read, clear} from '../lib/auth/token';
@@ -19,6 +20,8 @@ class Store {
       .then(({account, user}) => {
         this.account = account;
         this.user = user;
+
+        this.initSockets(user.username);
       })
       .catch(e => console.log(e));
   }
@@ -32,8 +35,30 @@ class Store {
     if (token) this.getUserFromToken(token);
   };
 
-  @action logout = () => {
-    return clear();
+  @action logout = () => clear();
+
+  initSockets = username => {
+    this.socket = SocketIOClient(`/`, {query: `username=${username}`});
+    this.socket.on(`message`, e => this.handleWSmessage(e));
+  }
+
+  updateUser = () => {
+    const token = get();
+    usersAPI.read(read(token).email)
+      .then(({account, user}) => {
+        this.account = account;
+        this.user = user;
+      })
+      .catch(e => console.log(e));
+  }
+
+  handleWSmessage = data => {
+    const {action} = data;
+    switch (action) {
+    case `transaction`:
+      this.updateUser();
+      break;
+    }
   }
 
 }
