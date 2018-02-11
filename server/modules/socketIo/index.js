@@ -11,25 +11,21 @@ module.exports.register = (server, options, next) => {
     const {id: socketId} = socket;
     const handshakeData = socket.request;
 
-    if (handshakeData._query[`username`] === undefined) return;
-    const existing = clients.filter(c => c.username === handshakeData._query[`username`]);
+    if (handshakeData._query[`account`] === undefined) return;
+    const existing = clients.filter(c => c.account === handshakeData._query[`account`]);
 
 
     const client = {
       socketId,
-      username: handshakeData._query[`username`]
+      account: handshakeData._query[`account`]
     };
     if (isEmpty(existing)) clients.push(client);
 
-
-    socket.emit(`init`, clients);
+    // socket.emit(`init`, clients);
 
     socket.on(`message`, data => {
-      console.log(`--------------`);
-      console.log(data);
       const to = JSON.parse(new Buffer(data.to, `base64`).toString(`ascii`));
-      console.log(to);
-      const toObj = clients.filter(c => c.username === to)[0];
+      const toObj = clients.filter(c => c.account === to.account)[0];
       io.to(toObj.socketId).emit(`message`, data);
     });
 
