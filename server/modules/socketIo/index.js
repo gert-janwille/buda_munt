@@ -11,13 +11,16 @@ module.exports.register = (server, options, next) => {
     const {id: socketId} = socket;
     const handshakeData = socket.request;
 
-    if (handshakeData._query[`account`] === undefined) return;
-    const existing = clients.filter(c => c.account === handshakeData._query[`account`]);
+    const qr = JSON.parse(new Buffer(handshakeData._query[`account`], `base64`).toString(`ascii`));
+    const {account} = qr;
+
+    if (account === undefined) return;
+    const existing = clients.filter(c => c.account === account);
 
 
     const client = {
       socketId,
-      account: handshakeData._query[`account`]
+      account: account
     };
     if (isEmpty(existing)) clients.push(client);
 
