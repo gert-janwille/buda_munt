@@ -21,7 +21,7 @@ class Store {
         this.account = account;
         this.user = user;
 
-        this.initSockets(user.username);
+        this.initSockets(user.account);
       })
       .catch(e => console.log(e));
   }
@@ -37,8 +37,8 @@ class Store {
 
   @action logout = () => clear();
 
-  initSockets = username => {
-    this.socket = SocketIOClient(`/`, {query: `username=${username}`});
+  initSockets = account => {
+    this.socket = SocketIOClient(`/`, {query: `account=${account}`});
     this.socket.on(`message`, e => this.handleWSmessage(e));
   }
 

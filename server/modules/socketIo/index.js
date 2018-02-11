@@ -11,13 +11,13 @@ module.exports.register = (server, options, next) => {
     const {id: socketId} = socket;
     const handshakeData = socket.request;
 
-    if (handshakeData._query[`username`] === undefined) return;
-    const existing = clients.filter(c => c.username === handshakeData._query[`username`]);
+    if (handshakeData._query[`account`] === undefined) return;
+    const existing = clients.filter(c => c.account === handshakeData._query[`account`]);
 
 
     const client = {
       socketId,
-      username: handshakeData._query[`username`]
+      account: handshakeData._query[`account`]
     };
     if (isEmpty(existing)) clients.push(client);
 
@@ -26,7 +26,7 @@ module.exports.register = (server, options, next) => {
 
     socket.on(`message`, data => {
       console.log(data);
-      const toObj = clients.filter(c => c.username === data.to)[0];
+      const toObj = clients.filter(c => c.account === data.to)[0];
       io.to(toObj.socketId).emit(`message`, data);
     });
 
