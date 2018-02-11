@@ -22,11 +22,13 @@ module.exports.register = (server, options, next) => {
     if (isEmpty(existing)) clients.push(client);
 
 
-    // socket.emit(`init`, clients);
+    socket.emit(`init`, clients);
 
     socket.on(`message`, data => {
+      console.log(`--------------`);
+      console.log(data);
       const to = JSON.parse(new Buffer(data.to, `base64`).toString(`ascii`));
-
+      console.log(to);
       const toObj = clients.filter(c => c.username === to)[0];
       io.to(toObj.socketId).emit(`message`, data);
     });
