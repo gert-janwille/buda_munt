@@ -11,16 +11,13 @@ module.exports.register = (server, options, next) => {
     const {id: socketId} = socket;
     const handshakeData = socket.request;
 
-    const qr = JSON.parse(new Buffer(handshakeData._query[`account`], `base64`).toString(`ascii`));
-    const {account} = qr;
-
-    if (account === undefined) return;
-    const existing = clients.filter(c => c.account === account);
+    if (handshakeData._query[`username`] === undefined) return;
+    const existing = clients.filter(c => c.username === handshakeData._query[`username`]);
 
 
     const client = {
       socketId,
-      account: account
+      username: handshakeData._query[`username`]
     };
     if (isEmpty(existing)) clients.push(client);
 
@@ -28,8 +25,9 @@ module.exports.register = (server, options, next) => {
     // socket.emit(`init`, clients);
 
     socket.on(`message`, data => {
-      console.log(data);
-      const toObj = clients.filter(c => c.account === data.to)[0];
+      const to = JSON.parse(new Buffer(data.to, `base64`).toString(`ascii`));
+
+      const toObj = clients.filter(c => c.username === to)[0];
       io.to(toObj.socketId).emit(`message`, data);
     });
 
