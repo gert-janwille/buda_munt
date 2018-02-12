@@ -1,75 +1,60 @@
 <div align="center">
   <a href="https://github.com/gert-janwille/buda_munt">
-    <img width="300"" src="https://raw.github.com/gert-janwille/Eleonora/master/docs/assets/eleonora-official.png">
+    <img width="200"" src="https://raw.github.com/gert-janwille/buda_munt/master/docs/logo.png">
   </a>
   <br/>
   <br/>
   <br/>
   <p>
-    Description
+    The Buda Coin app lets you pay in a local currency BDA(Buda Coin) everywhere on and near the Buda Island. Join us now on a <a href="https://budamunt.herokuapp.com/">Buda Coin</a>
 </div>
 
+# Buda Coin App
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+## Quick Overview
+
+```sh
+$ git clone https://github.com/gert-janwille/buda_munt.git
+$ cd buda_munt/
+$ yarn
+$ yarn run development || production
+```
+
+## Sections
+
+* [Getting Started](#getting-started)
+* [Build With](#Built-With)
+* [Contributing](#contributing)
+* [Authors](#authors)
+* [Acknowledgments](#acknowledgments)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
+### Production mode
+```sh
+$ yarn run production
 ```
 
-### Installing
+This will optimise all assets and code. After the production you can run `$ yarn run serve` to see the web app running.
 
-A step by step series of examples that tell you have to get a development env running
 
-Say what the step will be
-
+### Development mode
+```sh
+$ yarn run development
 ```
-Give the example
-```
+This runs the webpack-dev-server, now you can contribute to the web app.
 
-And repeat
+## Contributing
 
-```
-until finished
-```
+Contributions will be licensed under the [3-clause BSD license](https://github.com/react-community/create-react-native-app/blob/master/LICENSE). Please fork the repository, perform your work on a feature branch, and submit a pull request to this repository's master branch from your fork's branch.
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+For details about setting up a development environment and testing your changes, please see [CONTRIBUTING.md](https://github.com/react-community/create-react-native-app/blob/master/CONTRIBUTING.md).
 
 ## Built With
 
-* [TensorFlow](https://www.tensorflow.org/) - Artificial Intelligence Framework
-* [OpenCV](https://opencv.org/) - Face Detection
+* [React](https://reactjs.org/) - Framework that is being used
+* [Webpack](https://webpack.js.org/) - Bundlerhttp://
+* [MongoDB & Mongoose](http://mongoosejs.com/) - The database
 
 ## Contributing
 
@@ -82,6 +67,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 * **Gert-Jan Wille** - *Initial work* - [gert-janwille](https://github.com/gert-janwille)
+* **Eva Baete** - *Design* - [evabaete](https://github.com/evabaete)
 
 See also the list of [contributors](https://github.com/gert-janwille/buda_munt/contributors) who participated in this project.
 
@@ -92,3 +78,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 * Accomplished by [Devine](http://www.howest.be/Default.aspx?target=pih&lan=nl&item=1094)
+* In Collaboration with [Buda vzw](http://www.budakortrijk.be/nl)
