@@ -53,7 +53,8 @@ For details about setting up a development environment and testing your changes,
 ## Built With
 
 * [React](https://reactjs.org/) - Framework that is being used
-* [Webpack](https://webpack.js.org/) - Bundlerhttp://
+* [MobX](https://mobx.js.org/getting-started.html) - State manager
+* [Webpack](https://webpack.js.org/) - Bundler
 * [MongoDB & Mongoose](http://mongoosejs.com/) - The database
 
 ## Contributing
