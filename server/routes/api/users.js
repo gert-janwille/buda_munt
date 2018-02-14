@@ -31,7 +31,8 @@ module.exports = [
           allowUnknown: true
         },
         query: {
-          email: Joi.string()
+          email: Joi.string(),
+          username: Joi.string()
         }
       }
 
@@ -42,16 +43,30 @@ module.exports = [
       const token = jwt.decode(authorization);
       if (!token) return res(Boom.badRequest(`No authorization header`));
 
-      const {email} = req.query;
+      const {email, username} = req.query;
 
-      User.findOne({email})
-        .then(user => {
-          if (token.email !== email) return res(Boom.unauthorized(`You're unauthorized to get this user`));
-          getAccount(user, res);
-        })
-        .catch(() => {
-          return res(Boom.badRequest(`error while authenticating user`));
-        });
+      if (username !== undefined) {
+
+        User.findOne({username})
+          .then(({email}) => {
+            if (!email) return res(Boom.badRequest(`error while getting email`));
+            return res({email: email});
+          })
+          .catch(() => {
+            return res(Boom.badRequest(`error while authenticating user`));
+          });
+
+      } else {
+        User.findOne({email})
+          .then(user => {
+            if (token.email !== email) return res(Boom.unauthorized(`You're unauthorized to get this user`));
+            getAccount(user, res);
+          })
+          .catch(() => {
+            return res(Boom.badRequest(`error while authenticating user`));
+          });
+      }
+
     }
   },
 

@@ -6,7 +6,7 @@
   <br/>
   <br/>
   <p>
-    The Buda Coin app lets you pay in a local currency BDA(Buda Coin) everywhere on and near the Buda Island. Join us now on a <a href="https://budamunt.herokuapp.com/">Buda Coin</a>
+    Buda Coin lets you pay in a local currency BDA(Buda Coin) everywhere on and near the Buda Island. Join us now on a <a href="https://budamunt.herokuapp.com/">Buda Coin</a>
 </div>
 
 # Buda Coin App

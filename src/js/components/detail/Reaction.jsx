@@ -5,10 +5,10 @@ import {isEmpty} from 'lodash';
 import timeConverter from '../../lib/timeConverter';
 import NewReaction from './NewReaction';
 
-const Reaction = ({_id, currentUser, articleID, doneBy, username, account, description, date, mayControl, newComment = false, insertNewComment, acceptOrDenyProposal, setNewComment}) => {
+const Reaction = ({_id, title, currentUser, articleID, doneBy, username, account, description, date, mayControl, newComment = false, insertNewComment, acceptOrDenyProposal, setNewComment}) => {
   const handleSelectProposition = e => {
     e.preventDefault();
-    acceptOrDenyProposal(e, {id: articleID, username, account, _id});
+    acceptOrDenyProposal(e, {id: articleID, username, account, _id, title});
   };
 
   const handleCloseReaction = e => {
@@ -56,7 +56,8 @@ Reaction.propTypes = {
   acceptOrDenyProposal: func.isRequired,
   doneBy: object.isRequired,
   currentUser: object.isRequired,
-  setNewComment: func.isRequired
+  setNewComment: func.isRequired,
+  title: string.isRequired
 };
 
 export default Reaction;

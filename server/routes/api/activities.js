@@ -1,6 +1,7 @@
 const {Activity} = require(`mongoose`).models;
 const jwt = require(`jsonwebtoken`);
 const {omit, pick, isEmpty} = require(`lodash`);
+const mail = require(`../../lib/mail`);
 
 const Joi = require(`joi`);
 const Boom = require(`boom`);
@@ -174,6 +175,7 @@ module.exports = [
       case `doneby`:
         data[`doneBy`] = setDoneBy(req, res);
         insert = {$set: data};
+        sendMail(data[`doneBy`]);
         break;
       default:
         return res(Boom.badRequest(`No valid function found.`));
@@ -222,4 +224,11 @@ const validateObject = (obj, key) => {
   const error = {};
   key.map(k => !obj.hasOwnProperty(k) ? error[k] = `please add a ${k}` : ``);
   return error;
+};
+
+const sendMail = ({email, title}) => {
+  const u = {title};
+  u.subject = `Jou aanbod werd aanvaard!`;
+  u.mailtype = `accept`;
+  mail(u, email);
 };

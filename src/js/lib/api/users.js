@@ -5,14 +5,14 @@ import buildBody from '../buildBody';
 import token from '../auth/token';
 
 export default {
-  read: email => {
+  read: (name, email) => {
     const method = `GET`;
     const headers = new Headers({
       'Content-Type': `application/json`,
       authorization: token.get()
     });
 
-    return fetch(`${url}?email=${email}`, {method, headers, mode: `cors`})
+    return fetch(`${url}?${name}=${email}`, {method, headers, mode: `cors`})
       .then(r => r.json())
       .catch(er => console.log(er));
   },

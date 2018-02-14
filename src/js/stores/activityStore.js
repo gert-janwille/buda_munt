@@ -5,6 +5,7 @@ import serialize from '../lib/serialize';
 
 import {activities} from '../../assets/data/activities.json';
 import activityAPI from '../lib/api/activities';
+import usersAPI from '../lib/api/users';
 
 class Store {
   @observable newComment = false
@@ -129,17 +130,22 @@ class Store {
     const target = e.currentTarget.classList;
 
     if (target.contains(`accept`)) {
+      usersAPI.read(`username`, data.username)
+        .then(({email}) => {
+          data[`email`] = email;
+          activityAPI.update({doneby: String(JSON.stringify(data))}, `doneby`, data.id)
+            .then(a => {
+              a.comments = a.comments.sort((a, b) => new Date(b.date) - new Date(a.date));
+              this.chores.map(c => {
+                if (c._id === a._id) {
+                  c[`doneBy`] = a.doneBy;
+                  c.comments = a.comments;
+                }
+              });
+            });
+        })
+        .catch(e => console.log(e));
 
-      activityAPI.update({doneby: String(JSON.stringify(data))}, `doneby`, data.id)
-        .then(a => {
-          a.comments = a.comments.sort((a, b) => new Date(b.date) - new Date(a.date));
-          this.chores.map(c => {
-            if (c._id === a._id) {
-              c[`doneBy`] = a.doneBy;
-              c.comments = a.comments;
-            }
-          });
-        });
     } else {
       console.log(`deny`);
     }

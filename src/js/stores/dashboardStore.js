@@ -16,7 +16,7 @@ class Store {
   }
 
   getUserFromToken = token => {
-    usersAPI.read(read(token).email)
+    usersAPI.read(`email`, read(token).email)
       .then(({account, user}) => {
         this.account = account;
         this.user = user;

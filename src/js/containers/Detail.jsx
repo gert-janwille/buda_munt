@@ -46,7 +46,7 @@ const Detail = ({match, findOne, detailActivity, imgFile, hasAccess, newComment,
       <section className='reactions'>
         <h2 className='heading3 lato-bol light-grey-color'>Reacties:</h2>
         {newComment ? <Reaction setNewComment={setNewComment} articleID={_id} newComment {...currentUser} currentUser={currentUser} insertNewComment={insertNewComment} /> : ``}
-        {!isEmpty(comments) ? comments.map(comment => <Reaction key={comment._id} doneBy={doneBy} articleID={_id} mayControl={hasAccess(username)} acceptOrDenyProposal={acceptOrDenyProposal} {...comment} />) : `Er zijn nog geen reacties op dit klusje.`}
+        {!isEmpty(comments) ? comments.map(comment => <Reaction key={comment._id} title={title} doneBy={doneBy} articleID={_id} mayControl={hasAccess(username)} acceptOrDenyProposal={acceptOrDenyProposal} {...comment} />) : `Er zijn nog geen reacties op dit klusje.`}
       </section>
 
 
